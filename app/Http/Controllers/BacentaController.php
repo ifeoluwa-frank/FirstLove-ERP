@@ -16,17 +16,33 @@ class BacentaController extends Controller
         return view('bacenta.add_bacenta');
     }
 
-    public function add(Request $request){
-        $bacenta = new Bacenta();
+    public function addEdit(Request $request){
+        if($request->has('id')) {
+            $bacenta = Bacenta::where('id', $id)->first();
 
-        $bacenta->bacenta_name = $request->bacenta_name;
-        $bacenta->bacenta_leader_id = $request->bacenta_leader_id;
-        $bacenta->location = $request->location;
-        $bacenta->username = $request->username;
-        $bacenta->password = $request->password;
+            $bacenta->bacenta_name = $request->bacenta_name;
+            $bacenta->bacenta_leader_id = $request->bacenta_leader_id;
+            $bacenta->location = $request->location;
+            $bacenta->is_active = $request->is_active;
+            $bacenta->username = $request->username;
+            $bacenta->password = $request->password;
+            $bacenta->save();
 
-        $bacenta->save();
+            return to_route('bacenta.index');
+        } else {
+            $bacenta = new Bacenta();
 
-        return to_route('bacenta.index');
+            $bacenta->bacenta_name = $request->bacenta_name;
+            $bacenta->bacenta_leader_id = $request->bacenta_leader_id;
+            $bacenta->location = $request->location;
+            $bacenta->is_active = $request->is_active;
+            $bacenta->username = $request->username;
+    
+            // TODO: Hash password
+            $bacenta->password = $request->password;
+            $bacenta->save();
+    
+            return to_route('bacenta.index');
+        }
     }
 }

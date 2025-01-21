@@ -21,6 +21,15 @@
                 <label>Bacenta Location:</label>
                 <input type="text" name="location" >
             </div>
+
+            <div>
+                <label>Bacenta Location:</label>
+                <select name="is_active">
+                    <option disabled selected value="">-- Select an Option --</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
                     
             <div>
                 <label>Username:</label>

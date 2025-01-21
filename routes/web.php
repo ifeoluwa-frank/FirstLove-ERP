@@ -19,7 +19,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/bacentas', [BacentaController::class, 'index'])->name('bacenta.index');
     Route::get('/show-bacenta', [BacentaController::class, 'show'])->name('bacenta.show');
-    Route::post('/add-bacenta', [BacentaController::class, 'add'])->name('bacenta.add');
+    Route::post('/add-bacenta', [BacentaController::class, 'addEdit'])->name('bacenta.add');
 });
 
 
