@@ -12,9 +12,9 @@ class BacentaController extends Controller
         return view('bacenta.bacenta_list', compact('bacentas'));
     }
 
-    public function show(){
-        return view('bacenta.add_bacenta');
-    }
+    // public function show(){
+    //     return view('bacenta.add_bacenta');
+    // }
 
     public function addEdit(Request $request){
         if($request->has('id')) {
