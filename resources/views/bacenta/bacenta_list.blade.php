@@ -68,7 +68,7 @@
                 <div class="flex justify-between items-center mb-4">
                     <h1 class="text-xl font-bold">Bacenta List</h1>
                     <!-- Add New Bacenta Button -->
-                    <button onclick="openModal()" class="bg-orange-600 text-white px-4 py-2 rounded hover:bg-orange-700">+ Add New Bacenta</button>
+                    <button onclick="openModal('modal')" class="bg-orange-600 text-white px-4 py-2 rounded hover:bg-orange-700">+ Add New Bacenta</button>
                 </div>
                 
                 <!-- Table -->
@@ -88,6 +88,30 @@
                         </thead>
                         <tbody>
                             <!-- New rows will be added here dynamically -->
+                            @forelse($bacentas as $bacenta)
+                                <tr>
+                                    <td class="text-center">{{ __($loop->index + $bacentas->firstItem()) }}</td>
+                                    <td class="text-center">{{ $bacenta->bacenta_name }}</td>
+                                    <td class="text-center">{{ $bacenta->bacenta_leader_id }}</td>
+                                    <td class="text-center">{{ $bacenta->location }}</td>
+                                    <td class="text-center">{{ $bacenta->is_active }}</td>
+                                    <td class="text-center">{{ $bacenta->username }}</td>
+                                    <td class="text-center">{{ $bacenta->password }}</td>
+                                    <td class="text-center">
+                                        <button onclick="openModal('editModal')" class="bg-orange-600 text-white py-1 px-2 rounded hover:bg-orange-700 editBtn"
+                                        data-id="{{ $bacenta->id }}" data-name="{{ $bacenta->bacenta_name }}" data-leader="{{ $bacenta->bacenta_leader_id }}"
+                                        data-location="{{ $bacenta->location }}" data-status="{{ $bacenta->is_active }}" data-user="{{ $bacenta->username }}"
+                                        data-password="{{ $bacenta->password }}" id="editBtn"
+                                        >
+                                            Edit
+                                        </button>
+                                    </td>
+                                </tr>
+                            @empty
+                            <tr>
+                                <td class="text-muted text-center" colspan="100%">{{ __($emptyMessage) }}</td>
+                            </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
@@ -102,12 +126,13 @@
         <!-- Modal Header -->
         <div class="flex justify-between items-center border-b p-4">
             <h2 class="text-lg font-semibold">Add New Bacenta</h2>
-            <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700 text-xl">&times;</button>
+            <button onclick="closeModal('modal')" class="text-gray-500 hover:text-gray-700 text-xl">&times;</button>
         </div>
 
         <!-- Modal Body -->
         <div class="p-4">
-            <form>
+            <form action="{{ route('bacenta.add') }}" method="POST">
+                @csrf
                 <div class="mb-3">
                     <label class="block text-sm font-medium text-gray-700">Bacenta Name</label>
                     <input type="text" class="w-full px-3 py-2 border rounded" required>
@@ -145,13 +170,83 @@
     </div>
 </div>
 
+<div id="editModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden editModal">
+    <div class="bg-white rounded-lg shadow-lg w-96">
+        <!-- Modal Header -->
+        <div class="flex justify-between items-center border-b p-4">
+            <h2 class="text-lg font-semibold">Edit New Bacenta</h2>
+            <button onclick="closeModal('editModal')" class="text-gray-500 hover:text-gray-700 text-xl">&times;</button>
+        </div>
+
+        <!-- Modal Body -->
+        <div class="p-4">
+            <form action="{{ route('bacenta.add') }}" method="POST">
+                @csrf
+                <input name="id" id="id" hidden>
+                <div class="mb-3">
+                    <label class="block text-sm font-medium text-gray-700">Bacenta Name</label>
+                    <input type="text" name="bacenta_name" id="name" class="w-full px-3 py-2 border rounded" required>
+                </div>
+                <div class="mb-3">
+                    <label class="block text-sm font-medium text-gray-700">Bacenta Leader</label>
+                    <input type="text" name="bacenta_leader_id" id="lead_id" class="w-full px-3 py-2 border rounded" required>
+                </div>
+                <div class="mb-3">
+                    <label class="block text-sm font-medium text-gray-700">Bacenta Location</label>
+                    <input type="text" name="location" id="location" class="w-full px-3 py-2 border rounded" required>
+                </div>
+                <div class="mb-3">
+                    <label class="block text-sm font-medium text-gray-700">Status</label>
+                    <select class="w-full px-3 py-2 border rounded" name="is_active">
+                        <option disabled selected value="">-- Select an Option --</option>
+                        <option value="1">Active</option>
+                        <option value="0">Inactive</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="block text-sm font-medium text-gray-700">Username</label>
+                    <input type="text" name="username" id="username" class="w-full px-3 py-2 border rounded" required>
+                </div>
+                <div class="mb-3">
+                    <label class="block text-sm font-medium text-gray-700">Password</label>
+                    <input type="text" name="password" id="password" class="w-full px-3 py-2 border rounded" required>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="text-right">
+                    <button type="submit" class="bg-yellow-500 text-white px-4 py-2 rounded">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <!-- JavaScript for Modal -->
 <script>
-function openModal() {
-    document.getElementById('modal').classList.remove('hidden');
-}
+    function openModal(modal) {
+        document.getElementById(`${modal}`).classList.remove('hidden');
+    }
 
-function closeModal() {
-    document.getElementById('modal').classList.add('hidden');
-}
+    function closeModal(modal) {
+        document.getElementById(`${modal}`).classList.add('hidden');
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".editBtn").forEach((button) => {
+        button.addEventListener("click", (e) => {
+            const modal = document.getElementById("editModal");
+            const data = e.currentTarget.dataset;
+
+            modal.querySelector("#id").value = data.id || "";
+            modal.querySelector("#name").value = data.name || "";
+            modal.querySelector("#lead_id").value = data.leader || "";
+            modal.querySelector("#location").value = data.location || "";
+            modal.querySelector("#username").value = data.user || "";
+            modal.querySelector("#password").value = data.password || "";
+
+            modal.querySelector('select[name="is_active"]').value = data.status || "";
+        });
+    });
+});
+
 </script>
