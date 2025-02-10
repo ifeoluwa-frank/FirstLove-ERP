@@ -68,7 +68,7 @@
                 <div class="flex justify-between items-center mb-4">
                     <h1 class="text-xl font-bold">Bacenta List</h1>
                     <!-- Add New Bacenta Button -->
-                    <button onclick="openModal('modal')" class="bg-orange-600 text-white px-4 py-2 rounded hover:bg-orange-700">+ Add New Bacenta</button>
+                    <button onclick="openModal('modal')" class="bg-orange-600 text-white px-4 py-2 rounded hover:bg-orange-700 modalButton">+ Add New Bacenta</button>
                 </div>
                 
                 <!-- Table -->
@@ -98,7 +98,7 @@
                                     <td class="text-center">{{ $bacenta->username }}</td>
                                     <td class="text-center">{{ $bacenta->password }}</td>
                                     <td class="text-center">
-                                        <button onclick="openModal('editModal')" class="bg-orange-600 text-white py-1 px-2 rounded hover:bg-orange-700 editBtn"
+                                        <button onclick="openModal('editModal')" class="bg-orange-600 text-white py-1 px-2 rounded hover:bg-orange-700 editBtn modalButton"
                                         data-id="{{ $bacenta->id }}" data-name="{{ $bacenta->bacenta_name }}" data-leader="{{ $bacenta->bacenta_leader_id }}"
                                         data-location="{{ $bacenta->location }}" data-status="{{ $bacenta->is_active }}" data-user="{{ $bacenta->username }}"
                                         data-password="{{ $bacenta->password }}" id="editBtn"
@@ -121,7 +121,7 @@
 
 
 <!-- Modal (Hidden by Default) -->
-<div id="modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
+<div id="modal" class="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 open-modal-button hidden">
     <div class="bg-white rounded-lg shadow-lg w-96">
         <!-- Modal Header -->
         <div class="flex justify-between items-center border-b p-4">
@@ -170,7 +170,7 @@
     </div>
 </div>
 
-<div id="editModal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden editModal">
+<div id="editModal" class="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 open-modal-button hidden">
     <div class="bg-white rounded-lg shadow-lg w-96">
         <!-- Modal Header -->
         <div class="flex justify-between items-center border-b p-4">
@@ -224,11 +224,13 @@
 <!-- JavaScript for Modal -->
 <script>
     function openModal(modal) {
-        document.getElementById(`${modal}`).classList.remove('hidden');
+        let tmodal = document.getElementById(`${modal}`);
+        tmodal.classList.remove('hidden');
     }
 
     function closeModal(modal) {
-        document.getElementById(`${modal}`).classList.add('hidden');
+        let tModal = document.getElementById(`${modal}`);
+        tModal.classList.add('hidden');
     }
 
     document.addEventListener("DOMContentLoaded", function () {
