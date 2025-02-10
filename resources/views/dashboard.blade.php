@@ -14,7 +14,7 @@
                 </div>
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("Add Bacenta") }}
-                    <a href="{{ route('bacenta.show') }}">Add Bacenta</a>
+                    <a href="{{ route('bacenta.index') }}">Add Bacenta</a>
                 </div>
             </div>
         </div>
