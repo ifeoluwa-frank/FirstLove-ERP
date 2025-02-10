@@ -21,7 +21,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/add-bacenta', [BacentaController::class, 'addEdit'])->name('bacenta.add');
 
     Route::post('/', [BacentaController::class, 'addEdit'])->name('attendance.index');
-    Route::post('/', [BacentaController::class, 'addEdit'])->name('notifications.index');
+    Route::get('/', [BacentaController::class, 'addEdit'])->name('notifications.index');
     Route::post('/', [BacentaController::class, 'addEdit'])->name('attendance.index');
 });
 
