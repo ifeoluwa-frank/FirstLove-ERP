@@ -12,6 +12,7 @@
                     {{ __("You're logged in!") }}
                     <a href="{{ route('bacenta.index') }}">Bacenta List</a>
                 </div>
+
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("Add Bacenta") }}
                     <a href="{{ route('bacenta.index') }}">Add Bacenta</a>
@@ -20,3 +21,4 @@
         </div>
     </div>
 </x-app-layout>
+
