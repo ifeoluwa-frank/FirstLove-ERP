@@ -109,7 +109,7 @@
                                 </tr>
                             @empty
                             <tr>
-                                <td class="text-muted text-center" colspan="100%">{{ __($emptyMessage) }}</td>
+                                <td colspan="100%">No Bacenta Added Yet</td>
                             </tr>
                             @endforelse
                         </tbody>
@@ -135,30 +135,31 @@
                 @csrf
                 <div class="mb-3">
                     <label class="block text-sm font-medium text-gray-700">Bacenta Name</label>
-                    <input type="text" class="w-full px-3 py-2 border rounded" required>
+                    <input type="text" name="bacenta_name" class="w-full px-3 py-2 border rounded" required>
                 </div>
                 <div class="mb-3">
                     <label class="block text-sm font-medium text-gray-700">Bacenta Leader</label>
-                    <input type="text" class="w-full px-3 py-2 border rounded" required>
+                    <input type="text" name="bacenta_leader_id" class="w-full px-3 py-2 border rounded" required>
                 </div>
                 <div class="mb-3">
                     <label class="block text-sm font-medium text-gray-700">Bacenta Location</label>
-                    <input type="text" class="w-full px-3 py-2 border rounded" required>
+                    <input type="text" name="location" class="w-full px-3 py-2 border rounded" required>
                 </div>
                 <div class="mb-3">
                     <label class="block text-sm font-medium text-gray-700">Status</label>
-                    <select class="w-full px-3 py-2 border rounded" name="status">
-                        <option value="Active">Active</option>
-                        <option value="Inactive">Inactive</option>
+                    <select class="w-full px-3 py-2 border rounded" name="is_active">
+                        <option disabled selected value="">-- Select an Option --</option>
+                        <option value="1">Active</option>
+                        <option value="0">Inactive</option>
                     </select>
                 </div>
                 <div class="mb-3">
                     <label class="block text-sm font-medium text-gray-700">Username</label>
-                    <input type="text" class="w-full px-3 py-2 border rounded" required>
+                    <input type="text" name="username" class="w-full px-3 py-2 border rounded" required>
                 </div>
                 <div class="mb-3">
                     <label class="block text-sm font-medium text-gray-700">Password</label>
-                    <input type="text" class="w-full px-3 py-2 border rounded" required>
+                    <input type="text" name="password" class="w-full px-3 py-2 border rounded" required>
                 </div>
 
                 <!-- Submit Button -->
@@ -174,11 +175,11 @@
     <div class="bg-white rounded-lg shadow-lg w-96">
         <!-- Modal Header -->
         <div class="flex justify-between items-center border-b p-4">
-            <h2 class="text-lg font-semibold">Edit New Bacenta</h2>
+            <h2 class="text-lg font-semibold">Edit Bacenta</h2>
             <button onclick="closeModal('editModal')" class="text-gray-500 hover:text-gray-700 text-xl">&times;</button>
         </div>
 
-        <!-- Modal Body -->
+        <!-- Edit Modal Body -->
         <div class="p-4">
             <form action="{{ route('bacenta.add') }}" method="POST">
                 @csrf
