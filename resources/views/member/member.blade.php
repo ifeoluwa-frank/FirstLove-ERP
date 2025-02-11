@@ -73,42 +73,36 @@
                 
                 <!-- Table -->
                 <div class="overflow-x-auto">
-                    <table class="w-full border-collapse shadow-lg rounded-lg overflow-hidden">
-                        <thead class="bg-gray-600 text-white">
+                    <table class="w-full border-collapse shadow-md rounded-lg overflow-hidden text-sm">
+                        <thead class="bg-gray-200 text-gray-700">
                             <tr class="text-left">
-                                <th class="p-3 border border-gray-300">S.N.</th>
-                                <th class="p-3 border border-gray-300">Bacenta Name</th>
-                                <th class="p-3 border border-gray-300">Bacenta Leader</th>
-                                <th class="p-3 border border-gray-300">Bacenta Location</th>
-                                <th class="p-3 border border-gray-300">Status</th>
-                                <th class="p-3 border border-gray-300">Username</th>
-                                <th class="p-3 border border-gray-300">Password</th>
-                                <th class="p-3 border border-gray-300 text-center">Actions</th>
+                                <th class="p-2 border border-gray-300">S.N.</th>
+                                <th class="p-2 border border-gray-300">Name</th>
+                                <th class="p-2 border border-gray-300">Phone Number</th>
+                                <th class="p-2 border border-gray-300">School</th>
+                                <th class="p-2 border border-gray-300">Fellowship</th>
+                                <th class="p-2 border border-gray-300">Ministry</th>
+                                <th class="p-2 border border-gray-300 text-center">Actions</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
-                            <!-- Dynamic rows go here -->
+                            <!-- Dynamic rows here -->
                             <tr class="hover:bg-gray-100 transition">
-                                <td class="p-3 border border-gray-300">1</td>
-                                <td class="p-3 border border-gray-300">Example Bacenta</td>
-                                <td class="p-3 border border-gray-300">John Doe</td>
-                                <td class="p-3 border border-gray-300">New York</td>
-                                <td class="p-3 border border-gray-300 text-green-600 font-semibold">Active</td>
-                                <td class="p-3 border border-gray-300">johndoe</td>
-                                <td class="p-3 border border-gray-300">••••••••</td>
-                                <td class="p-3 border border-gray-300 text-center">
-                                    <button class="bg-blue-500 text-white px-2 py-1 rounded-md hover:bg-blue-700 transition">
-                                        ✏️ Edit
-                                    </button>
-                                    <button class="bg-red-500 text-white px-2 py-1 rounded-md ml-2 hover:bg-red-700 transition">
-                                        🗑️ Delete
+                                <td class="p-2 border border-gray-300">1</td>
+                                <td class="p-2 border border-gray-300">Silas Kepa</td>
+                                <td class="p-2 border border-gray-300">+2556903434</td>
+                                <td class="p-2 border border-gray-300">Makumira University</td>
+                                <td class="p-2 border border-gray-300">Boys hostel 1</td>
+                                <td class="p-2 border border-gray-300">Choir</td>
+                                <td class="p-2 border border-gray-300 text-center">
+                                    <button class="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-700 transition">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Zm6-10.125a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm1.294 6.336a6.721 6.721 0 0 1-3.17.789 6.721 6.721 0 0 1-3.168-.789 3.376 3.376 0 0 1 6.338 0Z" />
+                                          </svg>                                          
                                     </button>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                
-            </main>
-        </div>
-    </div>
+

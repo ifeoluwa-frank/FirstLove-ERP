@@ -70,12 +70,12 @@
                     <!-- Add New Bacenta Button -->
                     <button onclick="openModal('modal')" class="bg-orange-600 text-white px-4 py-2 rounded hover:bg-orange-700 modalButton">+ Add New Bacenta</button>
                 </div>
-                
+                    
                 <!-- Table -->
                 <div class="overflow-x-auto">
-                    <table class="w-full border-collapse border border-gray-300" id="bacentaTable">
-                        <thead class="bg-gray-600 text-white">
-                            <tr>
+                    <table class="w-full border-collapse shadow-md rounded-lg overflow-hidden text-sm" id="bacentaTable">
+                        <thead class="bg-gray-200 text-gray-700">
+                            <tr class="text-left">
                                 <th class="p-2 border">S.N.</th>
                                 <th class="p-2 border">Bacenta Name</th>
                                 <th class="p-2 border">Bacenta Leader</th>
