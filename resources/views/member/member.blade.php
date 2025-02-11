@@ -68,7 +68,7 @@
                 <div class="flex justify-between items-center mb-4">
                     <h1 class="text-xl font-bold">Members</h1>
                     <!-- Add New Bacenta Button -->
-                    <button onclick="openModal('modal')" class="bg-orange-600 text-white px-4 py-2 rounded hover:bg-orange-700 modalButton">+ Add New Member</button>
+                    <a href="{{ route('member.create') }}" class="bg-orange-600 text-white px-4 py-2 rounded hover:bg-orange-700 modalButton">+ Add New Member</a>
                 </div>
                 
                 <!-- Table -->
