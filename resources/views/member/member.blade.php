@@ -108,7 +108,7 @@
 
         <!-- Modal Body -->
         <div class="p-4">
-            <form action="{{ route('bacenta.add') }}" method="POST">
+            <form action="" method="POST">
                 @csrf
                 <div class="mb-3">
                     <label class="block text-sm font-medium text-gray-700">Bacenta Name</label>
@@ -158,7 +158,7 @@
 
         <!-- Edit Modal Body -->
         <div class="p-4">
-            <form action="{{ route('bacenta.add') }}" method="POST">
+            <form action="" method="POST">
                 @csrf
                 <input name="id" id="id" hidden>
                 <div class="mb-3">
