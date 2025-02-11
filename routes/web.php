@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MemberController;
 use App\Http\Controllers\BacentaController;
 use App\Http\Controllers\ProfileController;
 
@@ -23,6 +24,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/', [BacentaController::class, 'addEdit'])->name('attendance.index');
     Route::get('/', [BacentaController::class, 'addEdit'])->name('notifications.index');
     Route::post('/', [BacentaController::class, 'addEdit'])->name('attendance.index');
+
+    Route::get('/member', [MemberController::class, 'index'])->name('member.index');
 });
 
 
