@@ -26,6 +26,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/', [BacentaController::class, 'addEdit'])->name('attendance.index');
 
     Route::get('/member', [MemberController::class, 'index'])->name('member.index');
+    Route::post('/member-store', [MemberController::class, 'store'])->name('member.store');
     Route::get('/member-create', [MemberController::class, 'create'])->name('member.create');
 });
 

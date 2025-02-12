@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Member;
+use App\Models\Bacenta;
 use Illuminate\Http\Request;
 
 class MemberController extends Controller
@@ -12,7 +13,7 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $members = Member::all();
+        $members = Member::paginate(10);
         return view('member.member', compact('members'));
     }
 
@@ -21,7 +22,8 @@ class MemberController extends Controller
      */
     public function create()
     {
-        return view('member.create');
+        $bacentas = Bacenta::where('is_active', 1)->get();
+        return view('member.create', compact('bacentas'));
     }
 
     /**
@@ -49,7 +51,7 @@ class MemberController extends Controller
         ]);
 
         Member::create($request->all());
-        return redirect()->route('members.index')->with('success', 'Member created successfully.');
+        return redirect()->route('member.index')->with('success', 'Member created successfully.');
     }
 
     /**
