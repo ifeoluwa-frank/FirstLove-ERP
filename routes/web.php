@@ -21,11 +21,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/bacentas', [BacentaController::class, 'index'])->name('bacenta.index');
     Route::post('/add-bacenta', [BacentaController::class, 'addEdit'])->name('bacenta.add');
 
-    Route::post('/', [BacentaController::class, 'addEdit'])->name('attendance.index');
-    Route::get('/', [BacentaController::class, 'addEdit'])->name('notifications.index');
-    Route::post('/', [BacentaController::class, 'addEdit'])->name('attendance.index');
-
-    Route::get('/member', [MemberController::class, 'index'])->name('member.index');
+    Route::get('/members', [MemberController::class, 'index'])->name('member.index');
     Route::post('/member-store', [MemberController::class, 'store'])->name('member.store');
     Route::get('/member-create', [MemberController::class, 'create'])->name('member.create');
 });
