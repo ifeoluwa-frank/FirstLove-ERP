@@ -74,7 +74,7 @@
             </a>
         </nav>
         <div class="py-4 px-3 w-3/4 ml-6 rounded-2xl bg-gray-500">
-            <button class="text-xs w-full bg-[#E58025] text-white rounded-lg py-2 mb-2 rounded">
+            <button class="text-xs w-full bg-[#E58025] text-white rounded-lg py-2 mb-3 rounded">
                 + Add Member
             </button>
             <button class="text-xs w-full bg-[#E58025] text-white rounded-lg py-2 rounded">
