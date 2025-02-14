@@ -11,8 +11,17 @@
     <div class="w-full px-6 py-6">
         <div class="bg-white p-6 rounded-lg shadow-md">
             <h2 class="text-2xl font-semibold mb-4 text-center">Add New Member</h2>
-                    
-            <form action="{{ route('member.store') }}" method="POST">
+            @if ($errors->any())
+                <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4 rounded-lg">
+                    <ul class="list-disc list-inside">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+      
+            <form action="{{ route('member.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="grid grid-cols-4 gap-6">
                     <div>
@@ -53,7 +62,7 @@
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700">Fellowship</label>
-                        <select class="w-full px-3 py-2 border rounded" name="fellowship">
+                        <select class="w-full px-3 py-2 border rounded" name="bacenta_id">
                             <option disabled selected value="">-- Select an Option --</option>
                             @foreach($bacentas as $bacenta)
                                 <option value="{{ $bacenta->id }}">{{ $bacenta->bacenta_name }}</option>
@@ -67,7 +76,7 @@
                     <div>
                         {{-- TODO: MINISTRY SHOULD BE DYNAMICALLY ADDED - MINISTRY CRUDE TO BE DONE --}}
                         <label class="block text-sm font-medium text-gray-700">What Do You Do in Church?</label>
-                        <select class="w-full px-3 py-2 border rounded" name="church_role">
+                        <select class="w-full px-3 py-2 border rounded" name="ministry">
                             <option disabled selected value="">-- Select an Option --</option>
                             <option value="choir">Choir</option>
                             <option value="usher">Usher</option>

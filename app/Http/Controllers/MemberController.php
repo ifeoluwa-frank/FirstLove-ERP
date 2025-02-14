@@ -31,7 +31,7 @@ class MemberController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'first_name' => 'required|string|max:255',
             'middle_name' => 'nullable|string|max:255',
             'last_name' => 'required|string|max:255',
@@ -49,10 +49,22 @@ class MemberController extends Controller
             'baptized' => 'nullable|boolean',
             'nbs_certified' => 'nullable|boolean',
         ]);
-
-        Member::create($request->all());
+    
+        // Handle file upload
+        if ($request->hasFile('profile_picture')) {
+            $validatedData['profile_picture'] = $request->file('profile_picture')->store('profile_pictures', 'public');
+        }
+    
+        // Ensure boolean fields are properly cast
+        $validatedData['speaks_in_tongues'] = $request->boolean('speaks_in_tongues');
+        $validatedData['baptized'] = $request->boolean('baptized');
+        $validatedData['nbs_certified'] = $request->boolean('nbs_certified');
+    
+        Member::create($validatedData);
+    
         return redirect()->route('member.index')->with('success', 'Member created successfully.');
     }
+    
 
     /**
      * Display the specified resource.
