@@ -2,19 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Member;
 use App\Models\Bacenta;
 use Illuminate\Http\Request;
 
 class BacentaController extends Controller
 {
     public function index(){
-        $bacentas = Bacenta::paginate(10);
+        $bacentas = Bacenta::withCount('members')->orderByDesc('members_count')->paginate(10);
         return view('bacenta.bacenta_list', compact('bacentas'));
     }
 
-    // public function show(){
-    //     return view('bacenta.add_bacenta');
-    // }
+    public function eachBacentaMember(Request $request, $id){
+        $members = Member::where('bacenta_id', $id)->get();
+        return view('bacenta.member', compacr('members'));
+    }
 
     public function addEdit(Request $request){
         if($request->has('id')) {

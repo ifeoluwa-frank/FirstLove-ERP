@@ -37,7 +37,7 @@
                             <td class="p-2 border border-gray-300">{{ $member->first_name }} {{ $member->last_name }}</td>
                             <td class="p-2 border border-gray-300">{{ $member->phone }}</td>
                             <td class="p-2 border border-gray-300">{{ $member->school }}</td>
-                            <td class="p-2 border border-gray-300">{{ $member->bacenta->bacenta_name }}</td>
+                            <td class="p-2 border border-gray-300">{{ $member->bacenta_id }}</td>
                             <td class="p-2 border border-gray-300">{{ $member->ministry }}</td>
                             <td class="p-2 border border-gray-300 text-center">
                                 <button class="bg-blue-500 text-white px-3 py-1 rounded-md hover:bg-blue-700 transition">

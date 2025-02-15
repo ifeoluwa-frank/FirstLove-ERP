@@ -28,6 +28,7 @@
                         <th class="p-2 border">Status</th>
                         <th class="p-2 border">Username</th>
                         <th class="p-2 border">Password</th>
+                        <th class="p-2 border">Members</th>
                         <th class="p-2 border">Actions</th>
                     </tr>
                 </thead>
@@ -42,6 +43,9 @@
                             <td class="text-center">{{ $bacenta->is_active }}</td>
                             <td class="text-center">{{ $bacenta->username }}</td>
                             <td class="text-center">{{ $bacenta->password }}</td>
+                            <td class="text-center">
+                                <a href="" class="bg-orange-600 text-white py-1 px-2 rounded hover:bg-orange-700">{{ $bacenta->members_count }} Members</a>
+                            </td>
                             <td class="text-center">
                                 <button onclick="openModal('editModal')" class="bg-orange-600 text-white py-1 px-2 rounded hover:bg-orange-700 editBtn modalButton"
                                 data-id="{{ $bacenta->id }}" data-name="{{ $bacenta->bacenta_name }}" data-leader="{{ $bacenta->bacenta_leader_id }}"
