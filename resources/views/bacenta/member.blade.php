@@ -3,7 +3,7 @@
 @section('title', 'Members')
 
 @section('header')
-    Members
+    {{ $bacentaName->bacenta_name }}
 @endsection
 
 @section('content')

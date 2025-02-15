@@ -38,13 +38,22 @@
                         <tr>
                             <td class="text-center">{{ __($loop->index + $bacentas->firstItem()) }}</td>
                             <td class="text-center">{{ $bacenta->bacenta_name }}</td>
-                            <td class="text-center">{{ $bacenta->bacenta_leader_id }}</td>
+                            <td class="text-center">{{ $bacenta->leader->first_name . " " . $bacenta->leader->last_name}}</td>
                             <td class="text-center">{{ $bacenta->location }}</td>
-                            <td class="text-center">{{ $bacenta->is_active }}</td>
+                            <td class="text-center">
+                                @php
+                                    if ($bacenta->is_active) {
+                                        $status = "Active";
+                                    } else {
+                                        $status = "Inactive";
+                                    }
+                                @endphp
+                                {{ $status }}
+                            </td>
                             <td class="text-center">{{ $bacenta->username }}</td>
                             <td class="text-center">{{ $bacenta->password }}</td>
                             <td class="text-center">
-                                <a href="" class="bg-orange-600 text-white py-1 px-2 rounded hover:bg-orange-700">{{ $bacenta->members_count }} Members</a>
+                                <a href="{{ route('bacenta.member', ['id' => $bacenta->id]) }}" class="bg-orange-600 text-white py-1 px-2 rounded hover:bg-orange-700">{{ $bacenta->members_count }} Members</a>
                             </td>
                             <td class="text-center">
                                 <button onclick="openModal('editModal')" class="bg-orange-600 text-white py-1 px-2 rounded hover:bg-orange-700 editBtn modalButton"
@@ -86,7 +95,14 @@
                     </div>
                     <div class="mb-3">
                         <label class="block text-sm font-medium text-gray-700">Bacenta Leader</label>
-                        <input type="text" name="bacenta_leader_id" class="w-full px-3 py-2 border rounded" required>
+                        <select class="w-full px-3 py-2 border rounded" name="bacenta_leader_id">
+                            <option disabled selected value="">-- Select an Option --</option>
+                            @forelse ($leaders as $leader)
+                                <option value="{{ $leader->id }}">{{ $leader->first_name . " " . $leader->last_name  }}</option>
+                            @empty
+                                <option disabled value="">-- No Members Added Yet --</option>
+                            @endforelse
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label class="block text-sm font-medium text-gray-700">Bacenta Location</label>
@@ -137,7 +153,15 @@
                     </div>
                     <div class="mb-3">
                         <label class="block text-sm font-medium text-gray-700">Bacenta Leader</label>
-                        <input type="text" name="bacenta_leader_id" id="lead_id" class="w-full px-3 py-2 border rounded" required>
+                        {{-- <input type="text" name="bacenta_leader_id" id="lead_id" class="w-full px-3 py-2 border rounded" required> --}}
+                        <select class="w-full px-3 py-2 border rounded" name="bacenta_leader_id">
+                            <option disabled selected value="">-- Select an Option --</option>
+                            @forelse ($leaders as $leader)
+                                <option value="{{ $leader->id }}">{{ $leader->first_name . " " . $leader->last_name  }}</option>
+                            @empty
+                                <option disabled value="">-- No Members Added Yet --</option>
+                            @endforelse
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label class="block text-sm font-medium text-gray-700">Bacenta Location</label>
@@ -190,12 +214,13 @@
 
             modal.querySelector("#id").value = data.id || "";
             modal.querySelector("#name").value = data.name || "";
-            modal.querySelector("#lead_id").value = data.leader || "";
+            // modal.querySelector("#lead_id").value = data.leader || "";
             modal.querySelector("#location").value = data.location || "";
             modal.querySelector("#username").value = data.user || "";
             modal.querySelector("#password").value = data.password || "";
 
             modal.querySelector('select[name="is_active"]').value = data.status || "";
+            modal.querySelector('select[name="bacenta_leader_id"]').value = data.leader || "";
         });
     });
 });

@@ -20,7 +20,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/bacentas', [BacentaController::class, 'index'])->name('bacenta.index');
     Route::post('/add-bacenta', [BacentaController::class, 'addEdit'])->name('bacenta.add');
-    Route::post('/bacenta-members', [BacentaController::class, 'eachBacentaMember'])->name('bacenta.member');
+    Route::get('/bacenta-members/{id}', [BacentaController::class, 'eachBacentaMember'])->name('bacenta.member');
 
     Route::get('/members', [MemberController::class, 'index'])->name('member.index');
     Route::post('/member-store', [MemberController::class, 'store'])->name('member.store');

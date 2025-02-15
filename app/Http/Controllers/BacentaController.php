@@ -9,13 +9,15 @@ use Illuminate\Http\Request;
 class BacentaController extends Controller
 {
     public function index(){
-        $bacentas = Bacenta::withCount('members')->orderByDesc('members_count')->paginate(10);
-        return view('bacenta.bacenta_list', compact('bacentas'));
+        $bacentas = Bacenta::with('leader')->withCount('members')->orderByDesc('members_count')->paginate(20);
+        $leaders = Member::get();
+        return view('bacenta.bacenta_list', compact('bacentas', 'leaders'));
     }
 
     public function eachBacentaMember(Request $request, $id){
-        $members = Member::where('bacenta_id', $id)->get();
-        return view('bacenta.member', compacr('members'));
+        $members = Member::where('bacenta_id', $id)->paginate(20);
+        $bacentaName = Bacenta::findOrFail($id);
+        return view('bacenta.member', compact('members', 'bacentaName'));
     }
 
     public function addEdit(Request $request){
