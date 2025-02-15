@@ -18,13 +18,16 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    // BACENTA CONTROLLER ROUTES
     Route::get('/bacentas', [BacentaController::class, 'index'])->name('bacenta.index');
     Route::post('/add-bacenta', [BacentaController::class, 'addEdit'])->name('bacenta.add');
     Route::get('/bacenta-members/{id}', [BacentaController::class, 'eachBacentaMember'])->name('bacenta.member');
 
+    // MEMBER CONTROLLER ROUTES
     Route::get('/members', [MemberController::class, 'index'])->name('member.index');
     Route::post('/member-store', [MemberController::class, 'store'])->name('member.store');
     Route::get('/member-create', [MemberController::class, 'create'])->name('member.create');
+    Route::get('/member-details/{id}', [MemberController::class, 'edit'])->name('member.details');
 });
 
 

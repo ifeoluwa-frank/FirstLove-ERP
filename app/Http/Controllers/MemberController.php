@@ -13,7 +13,7 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $members = Member::with('bacenta')->paginate(10);
+        $members = Member::with('bacenta')->paginate(20);
         return view('member.member', compact('members'));
     }
 
@@ -77,9 +77,10 @@ class MemberController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Member $member)
+    public function edit($id)
     {
-        return view('members.edit', compact('member'));
+        $member = Member::findOrFail($id);
+        return view('member.details', compact('member'));
     }
 
     /**
