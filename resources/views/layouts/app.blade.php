@@ -74,12 +74,12 @@
             </a>
         </nav>
         <div class="py-4 px-3 w-3/4 ml-6 rounded-2xl bg-gray-500">
-            <button class="text-xs w-full bg-[#E58025] text-white rounded-lg py-2 mb-3 rounded">
+            <a href="{{ route('member.create') }}" class="text-xs flex align-center justify-center w-full bg-[#E58025] text-white rounded-lg py-2 mb-3 rounded">
                 + Add Member
-            </button>
-            <button class="text-xs w-full bg-[#E58025] text-white rounded-lg py-2 rounded">
+            </a>
+            <a href="{{ route('bacenta.index') }}" class="text-xs flex align-center justify-center w-full bg-[#E58025] text-white rounded-lg py-2 rounded">
                 + Add Bacenta
-            </button>
+            </a>
         </div>
     </aside>
 
