@@ -61,7 +61,7 @@
                         <input type="text" name="address" class="w-full px-3 py-2 border rounded">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-gray-700">Fellowship</label>
+                        <label class="block text-sm font-medium text-gray-700">Bacenta</label>
                         <select class="w-full px-3 py-2 border rounded" name="bacenta_id">
                             <option disabled selected value="">-- Select an Option --</option>
                             @foreach($bacentas as $bacenta)
@@ -74,14 +74,12 @@
                         <input type="date" name="joined_at" class="w-full px-3 py-2 border rounded">
                     </div>
                     <div>
-                        {{-- TODO: MINISTRY SHOULD BE DYNAMICALLY ADDED - MINISTRY CRUDE TO BE DONE --}}
-                        <label class="block text-sm font-medium text-gray-700">What Do You Do in Church?</label>
+                        <label class="block text-sm font-medium text-gray-700">Ministry</label>
                         <select class="w-full px-3 py-2 border rounded" name="ministry">
                             <option disabled selected value="">-- Select an Option --</option>
-                            <option value="choir">Choir</option>
-                            <option value="usher">Usher</option>
-                            <option value="media">Media Team</option>
-                            <option value="dancing star">Dancing Star</option>
+                            @foreach ($ministries as $ministry)
+                                <option value="{{ $ministry->id }}">{{ $ministry->name }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div>

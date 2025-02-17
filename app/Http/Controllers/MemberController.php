@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Member;
 use App\Models\Bacenta;
+use App\Models\Ministry;
 use Illuminate\Http\Request;
 
 class MemberController extends Controller
@@ -23,7 +24,8 @@ class MemberController extends Controller
     public function create()
     {
         $bacentas = Bacenta::where('is_active', 1)->get();
-        return view('member.create', compact('bacentas'));
+        $ministries = Ministry::where('status', true)->get();
+        return view('member.create', compact('bacentas', 'ministries'));
     }
 
     /**
