@@ -43,7 +43,7 @@
                             <td class="p-2 border border-gray-300">{{ $member->phone }}</td>
                             <td class="p-2 border border-gray-300">{{ $member->school }}</td>
                             <td class="p-2 border border-gray-300">{{ $member->bacenta->bacenta_name }}</td>
-                            <td class="p-2 border border-gray-300">{{ $member->ministry }}</td>
+                            <td class="p-2 border border-gray-300">{{ $member->ministry->name}}</td>
                             <td class="p-2 border border-gray-300 text-center">
                                 <a href="{{ route('member.details', ['id' => $member->id]) }}" class="text-blue-600">
                                     <div class="border border-blue-600 rounded-md flex align-center justify-center gap-2 hover:text-white hover:bg-blue-700 py-2">

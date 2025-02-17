@@ -14,7 +14,7 @@ class MemberController extends Controller
      */
     public function index()
     {
-        $members = Member::with('bacenta')->paginate(20);
+        $members = Member::with('bacenta')->with('ministry')->paginate(20);
         return view('member.member', compact('members'));
     }
 
