@@ -15,7 +15,7 @@ class BacentaController extends Controller
     }
 
     public function eachBacentaMember(Request $request, $id){
-        $members = Member::where('bacenta_id', $id)->paginate(20);
+        $members = Member::where('bacenta_id', $id)->with('fellowship')->with('bacenta')->paginate(20);
         $bacentaName = Bacenta::findOrFail($id);
         return view('bacenta.member', compact('members', 'bacentaName'));
     }
