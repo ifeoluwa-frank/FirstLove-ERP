@@ -19,6 +19,6 @@ class Bacenta extends Model
 
     public function leader(): BelongsTo
     {
-        return $this->belongsTo(Member::class, 'id');
+        return $this->belongsTo(Member::class, 'bacenta_leader_id');
     }
 }
