@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\BacentaController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\MinistryController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,6 +29,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/member-store', [MemberController::class, 'store'])->name('member.store');
     Route::get('/member-create', [MemberController::class, 'create'])->name('member.create');
     Route::get('/member-details/{id}', [MemberController::class, 'edit'])->name('member.details');
+
+    // MINISTRY CONTROLLER ROUTES
+    Route::get('/ministries', [MinistryController::class, 'index'])->name('ministry.index');
+    Route::post('/add-update-ministry', [MinistryController::class, 'addEdit'])->name('ministry.addEdit');
 });
 
 
