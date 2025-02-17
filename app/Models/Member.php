@@ -35,7 +35,7 @@ class Member extends Model
         return $this->belongsTo(Bacenta::class, 'bacenta_id');
     }
 
-    public function ministry(): BelongsTo
+    public function fellowship(): BelongsTo
     {
         return $this->belongsTo(Ministry::class, 'ministry');
     }
