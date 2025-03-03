@@ -227,7 +227,7 @@
             // modal.querySelector("#lead_id").value = data.leader || "";
             modal.querySelector("#location").value = data.location || "";
             modal.querySelector("#username").value = data.user || "";
-            modal.querySelector("#password").value = data.password || "";
+            //modal.querySelector("#password").value = data.password || "";
 
             modal.querySelector('select[name="is_active"]').value = data.status || "";
             modal.querySelector('select[name="bacenta_leader_id"]').value = data.leader || "";
