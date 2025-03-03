@@ -5,6 +5,7 @@ use App\Http\Controllers\MemberController;
 use App\Http\Controllers\BacentaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MinistryController;
+use App\Http\Controllers\BacentaAuthController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -33,6 +34,20 @@ Route::middleware('auth')->group(function () {
     // MINISTRY CONTROLLER ROUTES
     Route::get('/ministries', [MinistryController::class, 'index'])->name('ministry.index');
     Route::post('/add-update-ministry', [MinistryController::class, 'addEdit'])->name('ministry.addEdit');
+});
+
+
+
+Route::prefix('bacenta')->group(function () {
+    Route::get('login', [BacentaAuthController::class, 'showLoginForm'])->name('bacenta.login');
+    Route::post('login', [BacentaAuthController::class, 'login']);
+    Route::post('logout', [BacentaAuthController::class, 'logout'])->name('bacenta.logout');
+
+    Route::middleware('auth:bacenta')->group(function () {
+        Route::get('dashboard', function () {
+            return view('bacenta.bacenta-user.dashboard');
+        })->name('bacenta.dashboard');
+    });
 });
 
 

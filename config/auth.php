@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+            'bacenta' => [
+            'driver' => 'session',
+            'provider' => 'bacentas',
+        ],
     ],
 
     /*
@@ -63,6 +67,10 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => env('AUTH_MODEL', App\Models\User::class),
+        ],
+            'bacentas' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Bacenta::class,
         ],
 
         // 'users' => [

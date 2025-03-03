@@ -37,7 +37,7 @@
                         <th class="p-2 border">Bacenta Location</th>
                         <th class="p-2 border">Status</th>
                         <th class="p-2 border">Username</th>
-                        <th class="p-2 border">Password</th>
+                        {{-- <th class="p-2 border">Password</th> --}}
                         <th class="p-2 border">Members</th>
                         <th class="p-2 border">Actions</th>
                     </tr>
@@ -61,7 +61,7 @@
                                 {{ $status }}
                             </td>
                             <td class="text-center">{{ $bacenta->username }}</td>
-                            <td class="text-center">{{ $bacenta->password }}</td>
+                            {{-- <td class="text-center">{{ $bacenta->password }}</td> --}}
                             <td class="text-center">
                                 <a href="{{ route('bacenta.member', ['id' => $bacenta->id]) }}" class="bg-orange-600 text-white py-1 px-2 rounded hover:bg-orange-700">{{ $bacenta->members_count }} Members</a>
                             </td>

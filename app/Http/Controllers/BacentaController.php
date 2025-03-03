@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Member;
 use App\Models\Bacenta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class BacentaController extends Controller
 {
@@ -30,7 +31,7 @@ class BacentaController extends Controller
             $bacenta->location = $request->location;
             $bacenta->is_active = $request->is_active;
             $bacenta->username = $request->username;
-            $bacenta->password = $request->password;
+            $bacenta->password = Hash::make($request->password);
             $bacenta->save();
 
             return to_route('bacenta.index');
@@ -44,7 +45,7 @@ class BacentaController extends Controller
             $bacenta->username = $request->username;
     
             // TODO: Hash password
-            $bacenta->password = $request->password;
+            $bacenta->password = Hash::make($request->password);
             $bacenta->save();
     
             return to_route('bacenta.index');

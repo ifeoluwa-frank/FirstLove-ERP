@@ -6,11 +6,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Bacenta extends Model
+class Bacenta extends Authenticatable
 {
     //
     use HasFactory;
+
+    protected $hidden = ['password', 'remember_token'];
+
+    protected $guard = 'bacenta';
 
     public function members(): HasMany
     {
