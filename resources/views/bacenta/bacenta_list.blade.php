@@ -31,26 +31,26 @@
             <table class="w-full border-collapse shadow-md rounded-lg overflow-hidden text-sm" id="bacentaTable">
                 <thead class="bg-gray-200 text-gray-700">
                     <tr class="text-left">
-                        <th class="p-2 border">S.N.</th>
-                        <th class="p-2 border">Bacenta Name</th>
-                        <th class="p-2 border">Bacenta Leader</th>
-                        <th class="p-2 border">Bacenta Location</th>
-                        <th class="p-2 border">Status</th>
-                        <th class="p-2 border">Username</th>
+                        <th class="p-2 border border-gray-300">S.N.</th>
+                        <th class="p-2 border border-gray-300">Bacenta Name</th>
+                        <th class="p-2 border border-gray-300">Bacenta Leader</th>
+                        <th class="p-2 border border-gray-300">Bacenta Location</th>
+                        <th class="p-2 border border-gray-300">Status</th>
+                        <th class="p-2 border border-gray-300">Username</th>
                         {{-- <th class="p-2 border">Password</th> --}}
-                        <th class="p-2 border">Members</th>
-                        <th class="p-2 border">Actions</th>
+                        <th class="p-2 border border-gray-300">Members</th>
+                        <th class="p-2 border border-gray-300">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- New rows will be added here dynamically -->
                     @forelse($bacentas as $bacenta)
                         <tr>
-                            <td class="text-center">{{ __($loop->index + $bacentas->firstItem()) }}</td>
-                            <td class="text-center">{{ $bacenta->bacenta_name }}</td>
-                            <td class="text-center">{{ $bacenta->leader->first_name . " " . $bacenta->leader->last_name}}</td>
-                            <td class="text-center">{{ $bacenta->location }}</td>
-                            <td class="text-center">
+                            <td class="p-2 border border-gray-300">{{ __($loop->index + $bacentas->firstItem()) }}</td>
+                            <td class="p-2 border border-gray-300">{{ $bacenta->bacenta_name }}</td>
+                            <td class="p-2 border border-gray-300">{{ $bacenta->leader->first_name . " " . $bacenta->leader->last_name}}</td>
+                            <td class="p-2 border border-gray-300">{{ $bacenta->location }}</td>
+                            <td class="p-2 border border-gray-300">
                                 @php
                                     if ($bacenta->is_active) {
                                         $status = "Active";
@@ -60,12 +60,12 @@
                                 @endphp
                                 {{ $status }}
                             </td>
-                            <td class="text-center">{{ $bacenta->username }}</td>
+                            <td class="p-2 border border-gray-300">{{ $bacenta->username }}</td>
                             {{-- <td class="text-center">{{ $bacenta->password }}</td> --}}
-                            <td class="text-center">
+                            <td class="p-2 border border-gray-300">
                                 <a href="{{ route('bacenta.member', ['id' => $bacenta->id]) }}" class="bg-orange-600 text-white py-1 px-2 rounded hover:bg-orange-700">{{ $bacenta->members_count }} Members</a>
                             </td>
-                            <td class="text-center">
+                            <td class="p-2 border border-gray-300">
                                 <button onclick="openModal('editModal')" class="bg-orange-600 text-white py-1 px-2 rounded hover:bg-orange-700 editBtn modalButton"
                                 data-id="{{ $bacenta->id }}" data-name="{{ $bacenta->bacenta_name }}" data-leader="{{ $bacenta->bacenta_leader_id }}"
                                 data-location="{{ $bacenta->location }}" data-status="{{ $bacenta->is_active }}" data-user="{{ $bacenta->username }}"

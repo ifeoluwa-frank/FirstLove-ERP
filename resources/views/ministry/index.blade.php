@@ -31,21 +31,21 @@
             <table class="w-full border-collapse shadow-md rounded-lg overflow-hidden text-sm" id="bacentaTable">
                 <thead class="bg-gray-200 text-gray-700">
                     <tr class="text-left">
-                        <th class="p-2 border text-center">S.N.</th>
-                        <th class="p-2 border text-center">Ministry Name</th>
-                        <th class="p-2 border text-center">Description</th>
-                        <th class="p-2 border text-center">Status</th>
-                        <th class="p-2 border text-center">Actions</th>
+                        <th class="p-2 border border-gray-300">S.N.</th>
+                        <th class="p-2 border border-gray-300">Ministry Name</th>
+                        <th class="p-2 border border-gray-300">Description</th>
+                        <th class="p-2 border border-gray-300">Status</th>
+                        <th class="p-2 border border-gray-300">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- New rows will be added here dynamically -->
                     @forelse($ministries as $ministry)
                         <tr>
-                            <td class="text-center">{{ __($loop->index + $ministries->firstItem()) }}</td>
-                            <td class="text-center">{{ $ministry->name }}</td>
-                            <td class="text-center">{{ $ministry->description}}</td>
-                            <td class="text-center">
+                            <td class="p-2 border border-gray-300">{{ __($loop->index + $ministries->firstItem()) }}</td>
+                            <td class="p-2 border border-gray-300">{{ $ministry->name }}</td>
+                            <td class="p-2 border border-gray-300">{{ $ministry->description}}</td>
+                            <td class="p-2 border border-gray-300">
                                 @php
                                     if ($ministry->status) {
                                         $status = "Active";
@@ -55,7 +55,7 @@
                                 @endphp
                                 {{ $status }}
                             </td>
-                            <td class="text-center">
+                            <td class="p-2 border border-gray-300">
                                 <button onclick="openModal('editModal')" class="bg-orange-600 text-white py-1 px-2 rounded hover:bg-orange-700 editBtn modalButton"
                                 data-id="{{ $ministry->id }}" data-name="{{ $ministry->name }}" data-description="{{ $ministry->description }}"
                                 data-status="{{ $ministry->status }}" id="editBtn"
