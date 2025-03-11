@@ -1,24 +1,25 @@
-{{-- <form method="POST" action="{{ route('bacenta.login') }}">
-    @csrf
-    <input type="text" name="username" placeholder="Username" required>
-    <input type="password" name="password" placeholder="Password" required>
-    <button type="submit">Login</button>
-</form> --}}
-
-<div class="flex min-h-screen items-center justify-center bg-gray-200 relative overflow-hidden">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-200 relative overflow-hidden">
+    
     <!-- Background Design Elements -->
-    <div class="absolute inset-0 bg-gray-200">
-        <div class="absolute top-10 left-10 w-20 h-20 bg-white rounded-full shadow-md"></div>
-        <div class="absolute bottom-10 right-10 w-24 h-24 bg-white rounded-full shadow-md"></div>
+    <div class="absolute inset-0 bg-gray-200 flex items-center justify-center">
+        <div class="absolute top-16 left-16 w-16 h-16 bg-white rounded-full shadow-md"></div>
+        <div class="absolute bottom-16 right-16 w-20 h-20 bg-white rounded-full shadow-md"></div>
     </div>
-
+    
     <!-- Main Card -->
-    <div class="bg-white shadow-lg rounded-lg flex max-w-4xl w-full relative z-10">
+    <div class="bg-white shadow-lg rounded-lg flex flex-col md:flex-row max-w-xl w-full relative z-10 overflow-hidden">
         
         <!-- Left Section (Form) -->
-        <div class="w-1/2 p-10">
+        <div class="w-full md:w-1/2 lg:w-[60%] p-10"> <!-- Adjusted width here for a wider form section -->
             <h2 class="text-2xl font-bold text-center mb-6">Login to Your Account</h2>
-
             <form method="POST" action="{{ route('bacenta.login') }}">
                 @csrf
                 <div class="mb-4">
@@ -35,17 +36,18 @@
                 </button>
             </form>
         </div>
-
+        
         <!-- Right Section (Image) -->
-        <div class="w-1/2 bg-red-600 relative flex justify-center items-center">
+        <div class="w-full md:w-1/2 lg:w-[40%] bg-red-600 flex justify-center items-center p-5 relative rounded-tl-[50px] overflow-hidden">
             <div class="absolute top-10 left-10 w-12 h-12 bg-white rounded-full"></div>
-            <img src="{{ asset('path/to/your/image.jpg') }}" alt="Login Image"
-                class="w-full h-auto rounded-lg shadow-lg">
+            <img src="/build/assets/image/login-image.png" alt="Login Image"
+                class="w-full h-full object-cover rounded-tr-[50px]">
         </div>
     </div>
-
+    
     <!-- Footer -->
-    <footer class="absolute bottom-4 text-gray-600 text-sm">
-        © {{ date('Y') }} Your Church Name. All Rights Reserved.
+    <footer class="absolute bottom-4 text-gray-600 text-sm text-center w-full">
+        © {{ date('Y') }} First Love Church. All Rights Reserved.
     </footer>
-</div>
+</body>
+</html>
