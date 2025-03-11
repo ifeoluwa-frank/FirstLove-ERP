@@ -1,11 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MemberController;
-use App\Http\Controllers\BacentaController;
+use App\Http\Controllers\Admin\MemberController;
+use App\Http\Controllers\Admin\BacentaController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\MinistryController;
-use App\Http\Controllers\BacentaAuthController;
+use App\Http\Controllers\Admin\MinistryController;
+// use App\Http\Controllers\BacentaAuthController;
+use App\Http\Controllers\Bacenta\Auth\BacentaAuthController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -47,7 +48,7 @@ Route::prefix('bacenta')->group(function () {
 
     Route::middleware('auth:bacenta')->group(function () {
         Route::get('dashboard', function () {
-            return view('bacenta.bacenta-user.dashboard');
+            return view('bacenta.dashboard');
         })->name('bacenta.dashboard');
     });
 });

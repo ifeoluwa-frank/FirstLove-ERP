@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Member;
 use App\Models\Bacenta;
 use App\Models\Ministry;
@@ -15,7 +16,7 @@ class MemberController extends Controller
     public function index()
     {
         $members = Member::with('bacenta')->with('fellowship')->paginate(20);
-        return view('member.member', compact('members'));
+        return view('admin.member.member', compact('members'));
     }
 
     /**
@@ -25,7 +26,7 @@ class MemberController extends Controller
     {
         $bacentas = Bacenta::where('is_active', 1)->get();
         $ministries = Ministry::where('status', true)->get();
-        return view('member.create', compact('bacentas', 'ministries'));
+        return view('admin.member.create', compact('bacentas', 'ministries'));
     }
 
     /**
@@ -82,7 +83,7 @@ class MemberController extends Controller
     public function edit($id)
     {
         $member = Member::findOrFail($id);
-        return view('member.details', compact('member'));
+        return view('admin.member.details', compact('member'));
     }
 
     /**

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Ministry;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,7 @@ class MinistryController extends Controller
     //
     public function index() {
         $ministries = Ministry::paginate(20);
-        return view('ministry.index', compact('ministries'));
+        return view('admin.ministry.index', compact('ministries'));
     }
 
     public function addEdit(Request $request) {

@@ -23,7 +23,7 @@
             <form method="POST" action="{{ route('bacenta.login') }}">
                 @csrf
                 <div class="mb-4">
-                    <input type="email" name="email" placeholder="Enter Email" required
+                    <input type="text" name="username" placeholder="Enter Email" required
                         class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
                 </div>
                 <div class="mb-6">

@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Attendance;
 use Illuminate\Http\Request;
 use App\Models\UsherHeadcount;
 use App\Models\BusingAttendance;
+use App\Models\MembershipAttendance;
 
 class AttendanceController extends Controller
 {

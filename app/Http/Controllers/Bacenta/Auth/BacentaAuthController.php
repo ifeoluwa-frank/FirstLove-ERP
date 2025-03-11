@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Bacenta\Auth;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,10 +15,12 @@ class BacentaAuthController extends Controller
 
     public function login(Request $request)
     {
+        
         $credentials = $request->validate([
             'username' => 'required|string',
             'password' => 'required|string',
         ]);
+        // dd($credentials);
 
         if (Auth::guard('bacenta')->attempt($credentials)) {
             return redirect()->route('bacenta.dashboard');

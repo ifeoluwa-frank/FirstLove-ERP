@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Models\Member;
 use App\Models\Bacenta;
 use Illuminate\Http\Request;
@@ -12,13 +13,13 @@ class BacentaController extends Controller
     public function index(){
         $bacentas = Bacenta::with('leader')->withCount('members')->orderByDesc('members_count')->paginate(20);
         $leaders = Member::get();
-        return view('bacenta.bacenta_list', compact('bacentas', 'leaders'));
+        return view('admin.bacenta.bacenta_list', compact('bacentas', 'leaders'));
     }
 
     public function eachBacentaMember(Request $request, $id){
         $members = Member::where('bacenta_id', $id)->with('fellowship')->with('bacenta')->paginate(20);
         $bacentaName = Bacenta::findOrFail($id);
-        return view('bacenta.member', compact('members', 'bacentaName'));
+        return view('admin.bacenta.member', compact('members', 'bacentaName'));
     }
 
     public function addEdit(Request $request){
