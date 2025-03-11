@@ -40,12 +40,13 @@ Route::prefix('admin')->group(function () {
 });
 
 
-
+// BACENTA AUTH & ROUTES 
 Route::prefix('bacenta')->group(function () {
     Route::get('login', [BacentaAuthController::class, 'showLoginForm'])->name('bacenta.login');
     Route::post('login', [BacentaAuthController::class, 'login']);
     Route::post('logout', [BacentaAuthController::class, 'logout'])->name('bacenta.logout');
 
+    // ALL BACENTA ROUTES GOES HERE
     Route::middleware('auth:bacenta')->group(function () {
         Route::get('dashboard', function () {
             return view('bacenta.dashboard');
