@@ -11,7 +11,8 @@ class MinistryController extends Controller
     //
     public function index() {
         $ministries = Ministry::paginate(20);
-        return view('admin.ministry.index', compact('ministries'));
+        $pageTitle = "Sontas";
+        return view('admin.ministry.index', compact('ministries', 'pageTitle'));
     }
 
     public function addEdit(Request $request) {

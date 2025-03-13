@@ -1,21 +1,20 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\BacentaController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Admin\MinistryController;
 // use App\Http\Controllers\BacentaAuthController;
+use App\Http\Controllers\Admin\MinistryController;
 use App\Http\Controllers\Bacenta\Auth\BacentaAuthController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Route::prefix('admin')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard2');
-    })->middleware(['auth', 'verified'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
     Route::middleware('auth')->group(function () {
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -53,6 +52,5 @@ Route::prefix('bacenta')->group(function () {
         })->name('bacenta.dashboard');
     });
 });
-
 
 require __DIR__.'/auth.php';

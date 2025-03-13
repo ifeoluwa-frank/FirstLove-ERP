@@ -12,8 +12,9 @@ class BacentaController extends Controller
 {
     public function index(){
         $bacentas = Bacenta::with('leader')->withCount('members')->orderByDesc('members_count')->paginate(20);
+        $pageTitle = "Bacentas";
         $leaders = Member::get();
-        return view('admin.bacenta.bacenta_list', compact('bacentas', 'leaders'));
+        return view('admin.bacenta.bacenta_list', compact('bacentas', 'leaders', 'pageTitle'));
     }
 
     public function eachBacentaMember(Request $request, $id){

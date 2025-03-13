@@ -9,8 +9,28 @@
 
 @section('content')
     <!-- Content Section -->
-    <body>
     <div id="app">
+        <section class="is-title-bar">
+            <div
+              class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0"
+            >
+              <ul>
+                <li>Admin</li>
+                <li>{{ $pageTitle }}</li>
+              </ul>
+              {{-- <a
+                href="https://justboil.me/"
+                onclick="alert('Coming soon'); return false"
+                target="_blank"
+                class="button blue"
+              >
+                <span class="icon"
+                  ><i class="mdi mdi-credit-card-outline"></i
+                ></span>
+                <span>Premium Demo</span>
+              </a> --}}
+            </div>
+          </section>
         <section class="section main-section">
             @if ($errors->any())
             <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4" role="alert">
@@ -21,6 +41,11 @@
                 </ul>
             </div>
             @endif
+            <div class="flex justify-between items-center mb-4">
+                <div></div>
+                <button onclick="openModal('modal')" class="bg-orange-600 text-white px-4 py-2 rounded hover:bg-orange-700 modalButton">+ Add Bacenta</button>
+            </div>
+            
         <div class="card has-table">
             <header class="card-header">
               <p class="card-header-title">
@@ -30,6 +55,8 @@
               {{-- <a href="#" class="card-header-icon">
                 <span class="icon"><i class="mdi mdi-reload"></i></span>
               </a> --}}
+              {{-- <button onclick="openModal('modal')" class="bg-orange-600 text-white px-4 py-2 rounded hover:bg-orange-700 modalButton">+ Add New Bacenta</button> --}}
+              
             </header>
             <div class="card-content">
               <table>
@@ -132,7 +159,123 @@
         </div>
         </section>
     </div>
-</body>
+
+    <!-- Modal (Hidden by Default) -->
+    <div id="modal" class="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 open-modal-button hidden">
+        <div class="bg-white rounded-lg shadow-lg w-96">
+            <!-- Modal Header -->
+            <div class="flex justify-between items-center border-b p-4">
+                <h2 class="text-lg font-semibold">Add New Bacenta</h2>
+                <button onclick="closeModal('modal')" class="text-gray-500 hover:text-gray-700 text-xl">&times;</button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="p-4">
+                <form action="{{ route('bacenta.add') }}" method="POST">
+                    @csrf
+                    <div class="mb-3">
+                        <label class="block text-sm font-medium text-gray-700">Bacenta Name</label>
+                        <input type="text" name="bacenta_name" class="w-full px-3 py-2 border rounded" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="block text-sm font-medium text-gray-700">Bacenta Leader</label>
+                        <select class="w-full px-3 py-2 border rounded" name="bacenta_leader_id">
+                            <option disabled selected value="">-- Select an Option --</option>
+                            @forelse ($leaders as $leader)
+                                <option value="{{ $leader->id }}">{{ $leader->first_name . " " . $leader->last_name  }}</option>
+                            @empty
+                                <option disabled value="">-- No Members Added Yet --</option>
+                            @endforelse
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="block text-sm font-medium text-gray-700">Bacenta Location</label>
+                        <input type="text" name="location" class="w-full px-3 py-2 border rounded" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="block text-sm font-medium text-gray-700">Status</label>
+                        <select class="w-full px-3 py-2 border rounded" name="is_active">
+                            <option disabled selected value="">-- Select an Option --</option>
+                            <option value="1">Active</option>
+                            <option value="0">Inactive</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="block text-sm font-medium text-gray-700">Username</label>
+                        <input type="text" name="username" class="w-full px-3 py-2 border rounded" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="block text-sm font-medium text-gray-700">Password</label>
+                        <input type="text" name="password" class="w-full px-3 py-2 border rounded" required>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="text-right">
+                        <button type="submit" class="w-full bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="editModal" class="modal fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 open-modal-button hidden">
+        <div class="bg-white rounded-lg shadow-lg w-96">
+            <!-- Modal Header -->
+            <div class="flex justify-between items-center border-b p-4">
+                <h2 class="text-lg font-semibold">Edit Bacenta</h2>
+                <button onclick="closeModal('editModal')" class="text-gray-500 hover:text-gray-700 text-xl">&times;</button>
+            </div>
+
+            <!-- Edit Modal Body -->
+            <div class="p-4">
+                <form action="{{ route('bacenta.add') }}" method="POST">
+                    @csrf
+                    <input name="id" id="id" hidden>
+                    <div class="mb-3">
+                        <label class="block text-sm font-medium text-gray-700">Bacenta Name</label>
+                        <input type="text" name="bacenta_name" id="name" class="w-full px-3 py-2 border rounded" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="block text-sm font-medium text-gray-700">Bacenta Leader</label>
+                        {{-- <input type="text" name="bacenta_leader_id" id="lead_id" class="w-full px-3 py-2 border rounded" required> --}}
+                        <select class="w-full px-3 py-2 border rounded" name="bacenta_leader_id">
+                            <option disabled selected value="">-- Select an Option --</option>
+                            @forelse ($leaders as $leader)
+                                <option value="{{ $leader->id }}">{{ $leader->first_name . " " . $leader->last_name  }}</option>
+                            @empty
+                                <option disabled value="">-- No Members Added Yet --</option>
+                            @endforelse
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="block text-sm font-medium text-gray-700">Bacenta Location</label>
+                        <input type="text" name="location" id="location" class="w-full px-3 py-2 border rounded" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="block text-sm font-medium text-gray-700">Status</label>
+                        <select class="w-full px-3 py-2 border rounded" name="is_active">
+                            <option disabled selected value="">-- Select an Option --</option>
+                            <option value="1">Active</option>
+                            <option value="0">Inactive</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="block text-sm font-medium text-gray-700">Username</label>
+                        <input type="text" name="username" id="username" class="w-full px-3 py-2 border rounded" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="block text-sm font-medium text-gray-700">Password</label>
+                        <input type="text" name="password" id="password" class="w-full px-3 py-2 border rounded" required>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="text-right">
+                        <button type="submit" class="bg-yellow-500 text-white px-4 py-2 rounded">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 <!-- JavaScript for Modal -->
 <script>

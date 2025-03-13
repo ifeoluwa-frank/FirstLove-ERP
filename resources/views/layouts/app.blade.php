@@ -44,26 +44,6 @@ gtag("js", new Date());
 gtag("config", "UA-130795909-1");
 </script>
 
-{{-- <!-- Alpine.js for Mobile Sidebar Toggle -->
-<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> --}}
-
-    {{-- <style>
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #64748B; /* Slate Gray */
-            border-radius: 6px;
-        }
-        .d_svg {
-            width: 24px;
-            height: 24px;
-        }
-        .p_pic {
-            height: 45px;
-        }
-    </style> --}}
 </head>
 <body>
     <nav id="navbar-main" class="navbar is-fixed-top">
@@ -91,37 +71,6 @@ gtag("config", "UA-130795909-1");
         </div>
         <div class="navbar-menu" id="navbar-menu">
           <div class="navbar-end">
-            {{-- <div class="navbar-item dropdown has-divider">
-              <a class="navbar-link">
-                <span class="icon"><i class="mdi mdi-menu"></i></span>
-                <span>Sample Menu</span>
-                <span class="icon">
-                  <i class="mdi mdi-chevron-down"></i>
-                </span>
-              </a>
-              <div class="navbar-dropdown">
-                <a href="profile.html" class="navbar-item">
-                  <span class="icon"><i class="mdi mdi-account"></i></span>
-                  <span>My Profile</span>
-                </a>
-                <a class="navbar-item">
-                  <span class="icon"><i class="mdi mdi-settings"></i></span>
-                  <span>Settings</span>
-                </a>
-                <a class="navbar-item">
-                  <span class="icon"><i class="mdi mdi-email"></i></span>
-                  <span>Messages</span>
-                </a>
-                <hr class="navbar-divider" />
-                <a class="navbar-item">
-                  <span class="icon"><i class="mdi mdi-logout"></i></span>
-                  <form action="{{ route('logout') }}" method="POST" class="ml-4">
-                    @csrf
-                    <button type="submit" class="text-sm text-gray-700">Logout</button>
-                    </form>
-                </a>
-              </div>
-            </div> --}}
             <div class="navbar-item dropdown has-divider has-user-avatar">
               <a class="navbar-link">
                 <div class="user-avatar">
@@ -157,22 +106,6 @@ gtag("config", "UA-130795909-1");
                 </a>
               </div>
             </div>
-            {{-- <a
-              href="https://justboil.me/tailwind-admin-templates"
-              class="navbar-item has-divider desktop-icon-only"
-            >
-              <span class="icon"
-                ><i class="mdi mdi-help-circle-outline"></i
-              ></span>
-              <span>About</span>
-            </a>
-            <a
-              href="https://github.com/justboil/admin-one-tailwind"
-              class="navbar-item has-divider desktop-icon-only"
-            >
-              <span class="icon"><i class="mdi mdi-github-circle"></i></span>
-              <span>GitHub</span>
-            </a> --}}
             <a title="Log out" class="navbar-item desktop-icon-only">
               <span class="icon"></span>
               <form action="{{ route('logout') }}" method="POST" class="ml-4">
@@ -191,15 +124,15 @@ gtag("config", "UA-130795909-1");
         <div class="menu is-menu-main">
           <p class="menu-label">General</p>
           <ul class="menu-list">
-            <li class="">
-              <a href="{{ route('dashboard') }}" {{ setActive('dashboard') }}>
+            <li class="{{ setActive('dashboard') }}">
+              <a href="{{ route('dashboard') }}">
                 <span class="icon"><i class="mdi mdi-home"></i></span>
                 <span class="menu-item-label">Dashboard</span>
               </a>
             </li>
           </ul>
           <ul class="menu-list">
-            <li class="">
+            <li class="{{ setActive('member.index') }}">
               <a href="{{ route('member.index') }}">
                 <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
                 <span class="menu-item-label">Members</span>
@@ -207,7 +140,7 @@ gtag("config", "UA-130795909-1");
             </li>
           </ul>
           <ul class="menu-list">
-            <li class="">
+            <li class="{{ setActive('bacenta.index') }}">
               <a href="{{ route('bacenta.index') }}">
                 <span class="icon"><i class="mdi mdi-church"></i></span>
                 <span class="menu-item-label">Bacentas</span>
@@ -215,7 +148,7 @@ gtag("config", "UA-130795909-1");
             </li>
           </ul>
           <ul class="menu-list">
-            <li class="">
+            <li class="#">
               <a href="#">
                 <span class="icon"><i class="mdi mdi-account-multiple-plus"></i></span>
                 <span class="menu-item-label">Attendance</span>
@@ -223,15 +156,15 @@ gtag("config", "UA-130795909-1");
             </li>
           </ul>
           <ul class="menu-list">
-            <li class="">
+            <li class="{{ setActive('ministry.index') }}">
               <a href="{{ route('ministry.index') }}">
                 <span class="icon"><i class="mdi mdi-microphone-variant"></i></span>
-                <span class="menu-item-label">Ministries</span>
+                <span class="menu-item-label">Sontas</span>
               </a>
             </li>
           </ul>
           <ul class="menu-list">
-            <li class="">
+            <li class="#">
               <a href="#">
                 <span class="icon"><i class="mdi mdi-bell"></i></span>
                 <span class="menu-item-label">Notifications</span>
@@ -405,7 +338,7 @@ gtag("config", "UA-130795909-1");
             @yield('content')
         </div>
     </main> --}}
-    <div class="mt-6">
+    <div class="mt-6 bg-gray-200">
         @yield('content')
     </div>
 {{-- </div> --}}

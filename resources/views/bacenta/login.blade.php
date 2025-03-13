@@ -1,53 +1,105 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="form-screen">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login - Admin One Tailwind CSS Admin Dashboard</title>
+
+  <!-- Tailwind is included -->
+
+  @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
+    @vite(['resources/js/app.js', 'resources/css/main.css', 'resources/js/chart.sample.js', 'resources/js/chart.sample.min.js', 'resources/js/main.js', 'resources/js/main.min.js'])
+  @endif
+
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png"/>
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png"/>
+  <link rel="mask-icon" href="safari-pinned-tab.svg" color="#00b4b6"/>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130795909-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-130795909-1');
+  </script>
+
 </head>
-<body class="flex items-center justify-center min-h-screen bg-gray-200 relative overflow-hidden">
-    
-    <!-- Background Design Elements -->
-    <div class="absolute inset-0 bg-gray-200 flex items-center justify-center">
-        <div class="absolute top-16 left-16 w-16 h-16 bg-white rounded-full shadow-md"></div>
-        <div class="absolute bottom-16 right-16 w-20 h-20 bg-white rounded-full shadow-md"></div>
+<body>
+
+<div id="app">
+
+  <section class="section main-section">
+    <div class="card">
+      <header class="card-header">
+        <p class="card-header-title">
+          <span class="icon"><i class="mdi mdi-lock"></i></span>
+          Login
+        </p>
+      </header>
+      <div class="card-content">
+        <form action="{{ route('bacenta.login') }}" method="POST">
+        @csrf
+          <div class="field spaced">
+            <label class="label">Login</label>
+            <div class="control icons-left">
+              <input class="input" type="text" name="username" placeholder="user@example.com" autocomplete="username">
+              <span class="icon is-small left"><i class="mdi mdi-account"></i></span>
+            </div>
+            <p class="help">
+              Please enter your login
+            </p>
+          </div>
+
+          <div class="field spaced">
+            <label class="label">Password</label>
+            <p class="control icons-left">
+              <input class="input" type="password" name="password" placeholder="Password" autocomplete="current-password">
+              <span class="icon is-small left"><i class="mdi mdi-asterisk"></i></span>
+            </p>
+            <p class="help">
+              Please enter your password
+            </p>
+          </div>
+
+          <div class="field spaced">
+            <div class="control">
+              <label class="checkbox"><input type="checkbox" name="remember" value="1" checked>
+                <span class="check"></span>
+                <span class="control-label">Remember</span>
+              </label>
+            </div>
+          </div>
+
+          <hr>
+
+          <div class="field grouped">
+            <div class="control">
+              <button type="submit" class="button blue">
+                Login
+              </button>
+            </div>
+            <div class="control">
+              <a href="{{ route('welcome') }}" class="button">
+                Back
+              </a>
+            </div>
+          </div>
+
+        </form>
+      </div>
     </div>
-    
-    <!-- Main Card -->
-    <div class="bg-white shadow-lg rounded-lg flex flex-col md:flex-row max-w-xl w-full relative z-10 overflow-hidden">
-        
-        <!-- Left Section (Form) -->
-        <div class="w-full md:w-1/2 lg:w-[60%] p-10"> <!-- Adjusted width here for a wider form section -->
-            <h2 class="text-2xl font-bold text-center mb-6">Login to Your Account</h2>
-            <form method="POST" action="{{ route('bacenta.login') }}">
-                @csrf
-                <div class="mb-4">
-                    <input type="text" name="username" placeholder="Enter Email" required
-                        class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
-                </div>
-                <div class="mb-6">
-                    <input type="password" name="password" placeholder="Enter Password" required
-                        class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500">
-                </div>
-                <button type="submit"
-                    class="w-full bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 transition">
-                    Login
-                </button>
-            </form>
-        </div>
-        
-        <!-- Right Section (Image) -->
-        <div class="w-full md:w-1/2 lg:w-[40%] bg-red-600 flex justify-center items-center p-5 relative rounded-tl-[50px] overflow-hidden">
-            <div class="absolute top-10 left-10 w-12 h-12 bg-white rounded-full"></div>
-            <img src="/build/assets/image/login-image.png" alt="Login Image"
-                class="w-full h-full object-cover rounded-tr-[50px]">
-        </div>
-    </div>
-    
-    <!-- Footer -->
-    <footer class="absolute bottom-4 text-gray-600 text-sm text-center w-full">
-        © {{ date('Y') }} First Love Church. All Rights Reserved.
-    </footer>
+
+  </section>
+
+
+</div>
+
+<!-- Icons below are for demo only. Feel free to use any icon pack. Docs: https://bulma.io/documentation/elements/icon/ -->
+<link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css">
+
 </body>
 </html>
+
