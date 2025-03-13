@@ -32,7 +32,7 @@ class BacentaAuthController extends Controller
     public function logout()
     {
         Auth::guard('bacenta')->logout();
-        return redirect()->route('bacenta.login');
+        return redirect()->route('welcome');
     }
 }
 
