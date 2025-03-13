@@ -23,7 +23,7 @@ class BacentaAuthController extends Controller
         // dd($credentials);
 
         if (Auth::guard('bacenta')->attempt($credentials)) {
-            return redirect()->route('bacenta.dashboard');
+            return redirect()->route('dashboard');
         }
 
         return back()->withErrors(['username' => 'Invalid credentials']);

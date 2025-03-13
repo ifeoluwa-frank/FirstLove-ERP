@@ -94,7 +94,7 @@
               <div class="card">
                 <div class="card-content">
                   <h2 class="text-2xl ml-2 mb-2">Birthdays</h2>
-                  @foreach($upcoming_birthdays as $upcoming_birthday)
+                  @forelse($upcoming_birthdays as $upcoming_birthday)
                     <div class="flex align-center justify-between mb-3">
                       <div class="flex gap-2">
                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="svgs">
@@ -114,7 +114,11 @@
                           <span class="text-sm mt-1">{{ $upcoming_birthday->dob }}</span>
                       </div>
                   </div>
-                  @endforeach
+                  @empty
+                  <div class="mt-1 mr-3"> 
+                    <p class="text-xs font-bold">No upcoming birthdays</p>
+                  </div>
+                  @endforelse
                 </div>
               </div>
             </div>

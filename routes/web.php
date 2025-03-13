@@ -14,7 +14,6 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::prefix('admin')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
 
     Route::middleware('auth')->group(function () {
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -40,6 +39,8 @@ Route::prefix('admin')->group(function () {
 
 
 // BACENTA AUTH & ROUTES 
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth:web,bacenta', 'verified'])->name('dashboard');
+
 Route::prefix('bacenta')->group(function () {
     Route::get('login', [BacentaAuthController::class, 'showLoginForm'])->name('bacenta.login');
     Route::post('login', [BacentaAuthController::class, 'login']);

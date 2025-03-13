@@ -80,10 +80,16 @@ gtag("config", "UA-130795909-1");
                     class="rounded-full"
                   />
                 </div>
+                @if(Auth::guard('web')->check())
                 <div class="is-user-name"><span>{{ auth()->user()->name }}</span></div>
-                <span class="icon"><i class="mdi mdi-chevron-down"></i></span>
+                {{-- <span class="icon"><i class="mdi mdi-chevron-down"></i></span> --}}
+                @elseif(Auth::guard('bacenta')->check())
+                <div class="is-user-name"><span>{{ Auth::guard('bacenta')->user()->bacenta_name }}</span></div>
+                {{-- <span class="icon"><i class="mdi mdi-chevron-down"></i></span> --}}
+                @endif
               </a>
-              <div class="navbar-dropdown">
+              {{-- FUTURE USEFUL DROPDOWN --}}
+              {{-- <div class="navbar-dropdown">
                 <a href="profile.html" class="navbar-item">
                   <span class="icon"><i class="mdi mdi-account"></i></span>
                   <span>My Profile</span>
@@ -104,14 +110,27 @@ gtag("config", "UA-130795909-1");
                     <button type="submit" class="text-sm text-gray-700">Logout</button>
                 </form>
                 </a>
-              </div>
+              </div> --}}
             </div>
             <a title="Log out" class="navbar-item desktop-icon-only">
-              <span class="icon"></span>
+              
+              @if(Auth::guard('web')->check())
               <form action="{{ route('logout') }}" method="POST" class="ml-4">
                 @csrf
-                <button type="submit" class="text-sm text-gray-700"><i class="mdi mdi-logout"></i></button>
+                {{-- <span class="icon"> --}}
+                <button type="submit" class="text-sm text-gray-700 mt-4">
+                  <i class="mdi mdi-logout mdi-24px"></i>
+                </button>
+              {{-- </span> --}}
             </form>
+            @else
+            <form method="POST" action="{{ route('bacenta.logout') }}">
+              @csrf
+              <button type="submit" class="text-sm text-gray-700 mt-4">
+                <i class="mdi mdi-logout mdi-24px"></i>
+              </button>
+            </form>
+            @endif
             </a>
           </div>
         </div>
@@ -131,6 +150,7 @@ gtag("config", "UA-130795909-1");
               </a>
             </li>
           </ul>
+          @if(Auth::guard('web')->check())
           <ul class="menu-list">
             <li class="{{ setActive('member.index') }}">
               <a href="{{ route('member.index') }}">
@@ -139,6 +159,7 @@ gtag("config", "UA-130795909-1");
               </a>
             </li>
           </ul>
+          
           <ul class="menu-list">
             <li class="{{ setActive('bacenta.index') }}">
               <a href="{{ route('bacenta.index') }}">
@@ -147,6 +168,7 @@ gtag("config", "UA-130795909-1");
               </a>
             </li>
           </ul>
+          
           <ul class="menu-list">
             <li class="#">
               <a href="#">
@@ -163,6 +185,7 @@ gtag("config", "UA-130795909-1");
               </a>
             </li>
           </ul>
+          @endif
           <ul class="menu-list">
             <li class="#">
               <a href="#">
