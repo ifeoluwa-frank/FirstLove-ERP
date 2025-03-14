@@ -13,7 +13,8 @@
 
 @section('content')
     <!-- Content Section -->
-    <main class="p-6 bg-white shadow-md m-6 rounded-lg">
+    <div id="app">
+    <div class="p-6 bg-white shadow-md m-6 rounded-lg">
         <div class="flex justify-between items-center mb-4">
             <h1 class="text-xl font-bold">Members</h1>
             <!-- Add New Bacenta Button -->
@@ -63,7 +64,8 @@
                 </tbody>
             </table>
         </div>
-    </main>
+    </div>
+</div>
 
 @endsection
 

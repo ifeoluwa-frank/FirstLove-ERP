@@ -37,9 +37,11 @@ Route::prefix('admin')->group(function () {
     });
 });
 
+// DASHBOARD ROUTE
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth:web,bacenta', 'verified'])->name('dashboard');
+
 
 // BACENTA AUTH & ROUTES 
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth:web,bacenta', 'verified'])->name('dashboard');
 
 Route::prefix('bacenta')->group(function () {
     Route::get('login', [BacentaAuthController::class, 'showLoginForm'])->name('bacenta.login');

@@ -83,8 +83,10 @@ class MemberController extends Controller
      */
     public function edit($id)
     {
-        $member = Member::findOrFail($id);
-        return view('admin.member.details', compact('member'));
+        $member = Member::with('bacenta')->findOrFail($id);
+        $bacentas = Bacenta::get();
+        $ministries = Ministry::get();
+        return view('admin.member.details', compact('member', 'bacentas', 'ministries'));
     }
 
     /**

@@ -7,46 +7,279 @@
 @endsection
 
 @section('content')
-<div class="max-w-5xl mx-auto bg-white p-8 rounded-lg shadow-md mt-5">
-    <div class="flex gap-8">
-        <!-- Profile Section -->
-        <div class="w-1/3 text-center">
-            <img src=" " alt="Profile Picture" class="w-40 h-40 rounded-lg object-cover mx-auto shadow">
-            <h3 class="text-2xl font-semibold mt-4">Fred Shayo</h3>
-            <p class="text-green-600 font-bold text-lg">Active</p>
-        </div>
+<div id="app">
+    
+    <section class="is-title-bar">
+      <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+        <ul>
+          <li>Admin</li>
+          <li>{{ $member->first_name . " " . $member->last_name . "'s" }} Profile</li>
+        </ul>
+      </div>
+    </section>
+      <section class="section main-section">
+        <div class="grid grid-cols-1 gap-6 lg:grid-cols-4 mb-6">
+            <div class="card lg:col-span-1">
+                <header class="card-header">
+                  <p class="card-header-title">
+                    <span class="icon"><i class="mdi mdi-account"></i></span>
+                    Profile Card
+                  </p>
+                </header>
+                <div class="card-content">
+                  <div class="image w-48 h-48 mx-auto">
+                    <img src="https://avatars.dicebear.com/v2/initials/john-doe.svg" alt="John Doe" class="rounded-full">
+                  </div>
+                  <hr>
+                  <table class="table-auto w-full text-left mt-4">
+                    <tbody>
+                        <tr>
+                            <th class="p-2">Name:</th>
+                            <td class="p-2">{{ $member->first_name . " " . $member->last_name }}</td>
+                        </tr>
+                        <tr>
+                            <th class="p-2">School:</th>
+                            <td class="p-2">{{ $member->school }}</td>
+                        </tr>
+                        <tr>
+                            <th class="p-2">Phone:</th>
+                            <td class="p-2">{{ $member->phone }}</td>
+                        </tr>
+                        <tr>
+                            <th class="p-2">Bacenta:</th>
+                            <td class="p-2">{{ $member->bacenta->bacenta_name }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
+              </div>
+          <div class="card lg:col-span-3">
+            <header class="card-header">
+              <p class="card-header-title">
+                <span class="icon"><i class="mdi mdi-account-circle"></i></span>
+                Edit Profile
+              </p>
+            </header>
+            <div class="card-content">
+              <form>
+                {{-- <div class="field">
+                  <label class="label">Avatar</label>
+                  <div class="field-body">
+                    <div class="field file">
+                      <label class="upload control">
+                        <a class="button blue">
+                          Upload
+                        </a>
+                        <input type="file">
+                      </label>
+                    </div>
+                  </div>
+                </div> --}}
+                {{-- <hr> --}}
+                <div class="flex flex-col gap-4 sm:flex-row sm:gap-6">
+                    <div class="field w-full">
+                        <label class="label">First Name</label>
+                        <div class="control">
+                            <input type="text" autocomplete="on" name="first_name" value="{{ $member->first_name }}" class="input w-full" required>
+                        </div>
+                        <p class="help">Required.</p>
+                    </div>
+                    <div class="field w-full">
+                        <label class="label">Middle Name</label>
+                        <div class="control">
+                            <input type="text" autocomplete="on" name="middle_name" value="{{ $member->middle_name }}" class="input w-full">
+                        </div>
+                        {{-- <p class="help">Required.</p> --}}
+                    </div>
+                    <div class="field w-full">
+                        <label class="label">Last Name</label>
+                        <div class="control">
+                            <input type="text" autocomplete="on" name="last_name" value="{{ $member->last_name }}" class="input w-full" required>
+                        </div>
+                        <p class="help">Required.</p>
+                    </div>
+                </div>
 
-        <!-- Information Section -->
-        <div class="w-2/3 grid grid-cols-2 gap-6">
-            @foreach([
-                ['label' => 'First Name', 'value' => 'Fred'],
-                ['label' => 'Middle Name', 'value' => 'Richard'],
-                ['label' => 'Last Name', 'value' => 'Shayo'],
-                ['label' => 'Date of Birth', 'value' => '12 March 2022', 'readonly' => true],
-                ['label' => 'School', 'value' => 'University of Arusha'],
-                ['label' => 'Phone', 'value' => '+255 8146377947'],
-                ['label' => 'WhatsApp', 'value' => '+255 8146377947'],
-                ['label' => 'Address', 'value' => '123, Sakina, Arusha'],
-                ['label' => 'Bacenta ID', 'value' => 'BAC123456789', 'readonly' => true],
-                ['label' => 'Date Joined', 'value' => '08 Feb 2025, 11:19 PM', 'readonly' => true],
-                ['label' => 'Last Visited', 'value' => '12 Feb 2025, 3:45 PM'],
-                ['label' => 'Ministry', 'value' => 'Instrumentalists'],
-                ['label' => 'Speak in Tongues', 'value' => 'Yes', 'readonly' => true],
-                ['label' => 'Are You Baptized?', 'value' => 'Yes', 'readonly' => true],
-                ['label' => 'Do You Have an NBS Certificate?', 'value' => 'Yes', 'readonly' => true]
-            ] as $field)
-            <div>
-                <p class="text-gray-600 font-medium">{{ $field['label'] }}:</p>
-                <input type="text" value="{{ $field['value'] }}" class="text-lg p-2 border rounded w-full {{ isset($field['readonly']) ? 'bg-gray-100 cursor-not-allowed' : '' }}" {{ isset($field['readonly']) ? 'readonly' : '' }} />
+                <div class="flex flex-col gap-3 sm:flex-row sm:gap-2 mt-6 sm:mt-6">
+                    <div class="field w-full">
+                        <label class="label">Mobile</label>
+                        <div class="control">
+                            <input type="text" autocomplete="on" name="phone" value="{{ $member->phone }}" class="input w-full" required>
+                        </div>
+                        <p class="help">Required.</p>
+                    </div>
+                    <div class="field w-full">
+                        <label class="label">E-mail</label>
+                        <div class="control">
+                            <input type="email" autocomplete="on" name="email" value="{{ $member->email }}" class="input w-full" required>
+                        </div>
+                        {{-- <p class="help">Required.</p> --}}
+                    </div>
+                    <div class="field w-full">
+                        <label class="label">School</label>
+                        <div class="control">
+                            <input type="text" autocomplete="on" name="first_name" value="{{ $member->school }}" class="input w-full" required>
+                        </div>
+                        <p class="help">Required.</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-3 sm:flex-row sm:gap-2 mt-6 sm:mt-6">
+                    <div class="field w-full">
+                        <label class="label">Date of Birth</label>
+                        <div class="control">
+                            <input type="date" autocomplete="on" name="phone" value="{{ $member->dob }}" class="input w-full">
+                        </div>
+                        {{-- <p class="help">Required.</p> --}}
+                    </div>
+                    <div class="field w-full">
+                        <label class="label">WhatsApp</label>
+                        <div class="control">
+                            <input type="text" autocomplete="on" name="whatsapp" value="{{ $member->whatsapp }}" class="input w-full">
+                        </div>
+                        {{-- <p class="help">Required.</p> --}}
+                    </div>
+                    <div class="field w-full">
+                        <label class="label">Address</label>
+                        <div class="control">
+                            <input type="text" autocomplete="on" name="address" value="{{ $member->address }}" class="input w-full" required>
+                        </div>
+                        <p class="help">Required.</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-3 sm:flex-row sm:gap-2 mt-6 sm:mt-6">
+                    <div class="field w-full">
+                        <label class="label">Ministry</label>
+                        <select class="w-full px-3 py-2 border rounded controller" name="ministry_id">
+                            <option disabled value="">-- Select an Option --</option>
+                            @foreach($ministries as $ministry)
+                                <option value="{{ $ministry->id }}">{{ $ministry->name }}</option>
+                            @endforeach
+                        </select>
+                        {{-- <p class="help">Required.</p> --}}
+                    </div>
+                    <div class="field w-full">
+                        <label class="label">Speak In Tongues</label>
+                        <select class="w-full px-3 py-2 border rounded controller" name="speaks_in_tongues">
+                            <option disabled value="">-- Select an Option --</option>
+                            <option value="1" @selected($member->speaks_in_tongues == 1)>Yes</option>
+                            <option value="0" @selected($member->speaks_in_tongues == 0)>No</option>
+                        </select>
+                        {{-- <p class="help">Required.</p> --}}
+                    </div>
+                    <div class="field w-full">
+                        <label class="label">Baptized</label>
+                        <select class="w-full px-3 py-2 border rounded controller" name="baptized">
+                            <option disabled value="">-- Select an Option --</option>
+                            <option value="1" @selected($member->baptized == 1)>Yes</option>
+                            <option value="0" @selected($member->baptized == 0)>No</option>
+                        </select>
+                        {{-- <p class="help">Required.</p> --}}
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-3 sm:flex-row sm:gap-2 mt-6 sm:mt-6">
+                    <div class="field w-full">
+                        <label class="label">Bacenta</label>
+                        <select class="w-full px-3 py-2 border rounded controller" name="bacenta_id">
+                            <option disabled value="">-- Select an Option --</option>
+                            @foreach($bacentas as $bacenta)
+                                <option value="{{ $bacenta->id }}">{{ $bacenta->bacenta_name }}</option>
+                            @endforeach
+                        </select>
+                        {{-- <p class="help">Required.</p> --}}
+                    </div>
+                    <div class="field w-full">
+                        <label class="label">Date Joined</label>
+                        <div class="control">
+                            <input type="date" autocomplete="on" name="joined_at" value="{{ $member->joined_at }}" class="input w-full">
+                        </div>
+                        <p class="help">Required.</p>
+                    </div>
+                    <div class="field w-full">
+                        <label class="label">Last Visit</label>
+                        <div class="control">
+                            <input type="date" autocomplete="on" name="last_visited_at" value="{{ $member->last_visited_at }}" class="input w-full" required>
+                        </div>
+                        <p class="help">Required.</p>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-3 sm:flex-row sm:gap-2 mt-6 sm:mt-6">
+                    <div class="field w-full">
+                        <label class="label">NBS Certified</label>
+                        <select class="w-full px-3 py-2 border rounded controller" name="nbs_certified">
+                            <option disabled value="">-- Select an Option --</option>
+                            <option value="1" @selected($member->nbs_certified == 1)>Yes</option>
+                            <option value="0" @selected($member->nbs_certified == 0)>No</option>
+                        </select>
+                        {{-- <p class="help">Required.</p> --}}
+                    </div>
+                    <div class="field w-full">
+                        {{-- <p class="help">Required.</p> --}}
+                    </div>
+                    <div class="field w-full">
+                        
+                        {{-- <p class="help">Required.</p> --}}
+                    </div>
+                </div>
+                
+                <hr>
+                <div class="field">
+                  <div class="control">
+                    <button type="submit" class="button green">
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              </form>
             </div>
-            @endforeach
-        </div>
-    </div>
+          </div>
 
-    <!-- Action Buttons -->
-    <div class="mt-8 flex justify-between">
-        <a href="#" class="bg-gray-500 text-white px-5 py-2 rounded-lg hover:bg-gray-700 transition">Back to List</a>
-        <a href="#" class="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-800 transition">Save Changes</a>
+        </div>
+        {{-- <div class="card">
+          <header class="card-header">
+            <p class="card-header-title">
+              <span class="icon"><i class="mdi mdi-lock"></i></span>
+              Change Password
+            </p>
+          </header>
+          <div class="card-content">
+            <form>
+              <div class="field">
+                <label class="label">Current password</label>
+                <div class="control">
+                  <input type="password" name="password_current" autocomplete="current-password" class="input" required>
+                </div>
+                <p class="help">Required. Your current password</p>
+              </div>
+              <hr>
+              <div class="field">
+                <label class="label">New password</label>
+                <div class="control">
+                  <input type="password" autocomplete="new-password" name="password" class="input" required>
+                </div>
+                <p class="help">Required. New password</p>
+              </div>
+              <div class="field">
+                <label class="label">Confirm password</label>
+                <div class="control">
+                  <input type="password" autocomplete="new-password" name="password_confirmation" class="input" required>
+                </div>
+                <p class="help">Required. New password one more time</p>
+              </div>
+              <hr>
+              <div class="field">
+                <div class="control">
+                  <button type="submit" class="button green">
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div> --}}
+      </section>
+    
     </div>
-</div>
 @endsection
