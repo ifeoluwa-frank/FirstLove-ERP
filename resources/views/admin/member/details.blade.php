@@ -61,40 +61,37 @@
               </p>
             </header>
             <div class="card-content">
-              <form>
-                {{-- <div class="field">
-                  <label class="label">Avatar</label>
-                  <div class="field-body">
-                    <div class="field file">
-                      <label class="upload control">
-                        <a class="button blue">
-                          Upload
-                        </a>
-                        <input type="file">
-                      </label>
-                    </div>
-                  </div>
-                </div> --}}
-                {{-- <hr> --}}
+              @if ($errors->any())
+                        <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4 rounded-lg">
+                            <ul class="list-disc list-inside">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+              <form action="{{ route('member.update', $member->id) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT') 
                 <div class="flex flex-col gap-4 sm:flex-row sm:gap-6">
                     <div class="field w-full">
                         <label class="label">First Name</label>
                         <div class="control">
-                            <input type="text" autocomplete="on" name="first_name" value="{{ $member->first_name }}" class="input w-full" required>
+                            <input type="text" name="first_name" value="{{ $member->first_name }}" class="input w-full" required>
                         </div>
                         <p class="help">Required.</p>
                     </div>
                     <div class="field w-full">
                         <label class="label">Middle Name</label>
                         <div class="control">
-                            <input type="text" autocomplete="on" name="middle_name" value="{{ $member->middle_name }}" class="input w-full">
+                            <input type="text" name="middle_name" value="{{ $member->middle_name }}" class="input w-full">
                         </div>
                         {{-- <p class="help">Required.</p> --}}
                     </div>
                     <div class="field w-full">
                         <label class="label">Last Name</label>
                         <div class="control">
-                            <input type="text" autocomplete="on" name="last_name" value="{{ $member->last_name }}" class="input w-full" required>
+                            <input type="text" name="last_name" value="{{ $member->last_name }}" class="input w-full" required>
                         </div>
                         <p class="help">Required.</p>
                     </div>
@@ -104,21 +101,23 @@
                     <div class="field w-full">
                         <label class="label">Mobile</label>
                         <div class="control">
-                            <input type="text" autocomplete="on" name="phone" value="{{ $member->phone }}" class="input w-full" required>
+                            <input type="text" name="phone" value="{{ $member->phone }}" class="input w-full" required>
                         </div>
                         <p class="help">Required.</p>
                     </div>
                     <div class="field w-full">
-                        <label class="label">E-mail</label>
-                        <div class="control">
-                            <input type="email" autocomplete="on" name="email" value="{{ $member->email }}" class="input w-full" required>
-                        </div>
-                        {{-- <p class="help">Required.</p> --}}
-                    </div>
+                      <label class="label">NBS Certified</label>
+                      <select class="w-full px-3 py-2 border rounded controller" name="nbs_certified">
+                          <option disabled value="">-- Select an Option --</option>
+                          <option value="1" @selected($member->nbs_certified == 1)>Yes</option>
+                          <option value="0" @selected($member->nbs_certified == 0)>No</option>
+                      </select>
+                      {{-- <p class="help">Required.</p> --}}
+                  </div>
                     <div class="field w-full">
                         <label class="label">School</label>
                         <div class="control">
-                            <input type="text" autocomplete="on" name="first_name" value="{{ $member->school }}" class="input w-full" required>
+                            <input type="text" name="school" value="{{ $member->school }}" class="input w-full" required>
                         </div>
                         <p class="help">Required.</p>
                     </div>
@@ -128,7 +127,7 @@
                     <div class="field w-full">
                         <label class="label">Date of Birth</label>
                         <div class="control">
-                            <input type="date" autocomplete="on" name="phone" value="{{ $member->dob }}" class="input w-full">
+                            <input type="date" autocomplete="on" name="dob" value="{{ $member->dob }}" class="input w-full">
                         </div>
                         {{-- <p class="help">Required.</p> --}}
                     </div>
@@ -193,41 +192,23 @@
                     <div class="field w-full">
                         <label class="label">Date Joined</label>
                         <div class="control">
-                            <input type="date" autocomplete="on" name="joined_at" value="{{ $member->joined_at }}" class="input w-full">
+                            <input type="date" name="joined_at" value="{{ $member->joined_at }}" class="input w-full">
                         </div>
                         <p class="help">Required.</p>
                     </div>
                     <div class="field w-full">
                         <label class="label">Last Visit</label>
                         <div class="control">
-                            <input type="date" autocomplete="on" name="last_visited_at" value="{{ $member->last_visited_at }}" class="input w-full" required>
+                            <input type="date" name="last_visited_at" value="{{ $member->last_visited_at }}" class="input w-full" required>
                         </div>
                         <p class="help">Required.</p>
-                    </div>
-                </div>
-                <div class="flex flex-col gap-3 sm:flex-row sm:gap-2 mt-6 sm:mt-6">
-                    <div class="field w-full">
-                        <label class="label">NBS Certified</label>
-                        <select class="w-full px-3 py-2 border rounded controller" name="nbs_certified">
-                            <option disabled value="">-- Select an Option --</option>
-                            <option value="1" @selected($member->nbs_certified == 1)>Yes</option>
-                            <option value="0" @selected($member->nbs_certified == 0)>No</option>
-                        </select>
-                        {{-- <p class="help">Required.</p> --}}
-                    </div>
-                    <div class="field w-full">
-                        {{-- <p class="help">Required.</p> --}}
-                    </div>
-                    <div class="field w-full">
-                        
-                        {{-- <p class="help">Required.</p> --}}
                     </div>
                 </div>
                 
                 <hr>
                 <div class="field">
                   <div class="control">
-                    <button type="submit" class="button green">
+                    <button type="submit" class="button green w-full">
                       Submit
                     </button>
                   </div>

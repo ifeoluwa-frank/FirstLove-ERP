@@ -7,6 +7,7 @@
   }
 </style>
 
+
 @section('title', 'Bacenta')
 
 @section('header')
@@ -623,7 +624,7 @@
                 </div>
               </div>
             </div>
-          </section>       
+          </section>    
     </body>
 
 @endsection

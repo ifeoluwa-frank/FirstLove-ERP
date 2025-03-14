@@ -30,6 +30,7 @@ Route::prefix('admin')->group(function () {
         Route::post('/member-store', [MemberController::class, 'store'])->name('member.store');
         Route::get('/member-create', [MemberController::class, 'create'])->name('member.create');
         Route::get('/member-details/{id}', [MemberController::class, 'edit'])->name('member.details');
+        Route::put('/member-update/{id}', [MemberController::class, 'update'])->name('member.update');
 
         // MINISTRY CONTROLLER ROUTES
         Route::get('/ministries', [MinistryController::class, 'index'])->name('ministry.index');

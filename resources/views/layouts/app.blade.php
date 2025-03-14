@@ -43,7 +43,15 @@ function gtag() {
 gtag("js", new Date());
 gtag("config", "UA-130795909-1");
 </script>
+<style>
+  #app {
+    min-height: 100vh;
+  }
 
+  footer {
+    margin-top: auto;
+  }
+</style>
 </head>
 <body>
   <header>
@@ -138,7 +146,7 @@ gtag("config", "UA-130795909-1");
 
     <aside class="aside is-placed-left is-expanded">
       <div class="aside-tools">
-        <div>Admin <b class="font-black">One</b></div>
+        <div>FirstLove  <b class="font-black">Church</b></div>
       </div>
       {{-- MENU OPTIONS --}}
       <div class="menu is-menu-main">
