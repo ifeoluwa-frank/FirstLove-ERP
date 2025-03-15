@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Admin\MemberController;
 use App\Http\Controllers\Admin\BacentaController;
 // use App\Http\Controllers\BacentaAuthController;
+use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\MinistryController;
 use App\Http\Controllers\Bacenta\Auth\BacentaAuthController;
 
@@ -35,6 +36,10 @@ Route::prefix('admin')->group(function () {
         // MINISTRY CONTROLLER ROUTES
         Route::get('/ministries', [MinistryController::class, 'index'])->name('ministry.index');
         Route::post('/add-update-ministry', [MinistryController::class, 'addEdit'])->name('ministry.addEdit');
+
+        // SERVICE CONTROLLER ROUTES
+        Route::get('/services', [ServiceController::class, 'index'])->name('service.index');
+        Route::post('/add-update-service', [ServiceController::class, 'addEdit'])->name('service.addEdit');
     });
 });
 

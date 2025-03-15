@@ -1,7 +1,7 @@
 
 @extends('layouts.app')
 
-@section('title', 'Ministries')
+@section('title', 'Services')
 
 @section('header')
     Ministries
@@ -33,14 +33,14 @@
             <div class="flex justify-between items-center mb-4">
                 <h1 class="text-xl font-bold"></h1>
                 <!-- Add New Bacenta Button -->
-                <button onclick="openModal('modal')" class="bg-orange-600 text-white px-4 py-2 rounded hover:bg-orange-700 modalButton">+ Add Sonta</button>
+                <button onclick="openModal('modal')" class="bg-orange-600 text-white px-4 py-2 rounded hover:bg-orange-700 modalButton">+ Add Service</button>
             </div>
             
         <div class="card has-table">
             <header class="card-header">
               <p class="card-header-title">
-                <span class="icon"><i class="mdi mdi-church"></i></span>
-                Bacentas
+                <span class="icon"><i class="mdi mdi-bible"></i></span>
+                Services
               </p>
               {{-- <a href="#" class="card-header-icon">
                 <span class="icon"><i class="mdi mdi-reload"></i></span>
@@ -53,40 +53,36 @@
                 <thead>
                   <tr>
                     <th>S/N</th>
-                    <th>Ministry Name</th>
-                    <th>Description</th>
-                    <th>Status</th>
+                    <th>Service Name</th>
+                    <th>Special</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                    @forelse($ministries as $ministry)
+                    @forelse($services as $service)
                   <tr>
-                    <td data-label="Serial">{{ __($loop->index + $ministries->firstItem()) }}</td>
-                    <td data-label="Name">{{ $ministry->name }}</td>
-                    <td data-label="Description">{{ $ministry->description}}</td>
-                    <td data-label="Status" class="progress-cell">
+                    <td data-label="Serial">{{ __($loop->index + $services->firstItem()) }}</td>
+                    <td data-label="Name">{{ $service->name }}</td>
+                    <td data-label="Special" class="progress-cell">
                         @php
-                            if ($ministry->status) {
-                                $status = "Active";
+                            if ($service->is_special) {
+                                $is_special = "Yes";
                             } else {
-                                $status = "Inactive";
+                                $is_special = "No";
                             }
                         @endphp
-                        {{ $status }}
+                        {{ $is_special }}
                     </td>
                     <td data-label="edit" class="actions-cell">
                         <button onclick="openModal('editModal')" class="bg-orange-600 text-white py-1 px-2 rounded hover:bg-orange-700 editBtn modalButton"
-                                data-id="{{ $ministry->id }}" data-name="{{ $ministry->name }}" data-description="{{ $ministry->description }}"
-                                data-status="{{ $ministry->status }}" id="editBtn"
-                                >
-                                    Edit
+                                data-id="{{ $service->id }}" data-name="{{ $service->name }}" data-is_special="{{ $service->is_special }}" id="editBtn">
+                                Edit
                         </button>
                     </td>
                   </tr>
                   @empty
                     <tr>
-                        <td colspan="100%">No Bacenta Added Yet</td>
+                        <td colspan="100%">No Service Added Yet</td>
                     </tr>
                 @endforelse
                 
@@ -112,28 +108,24 @@
         <div class="bg-white rounded-lg shadow-lg w-96">
             <!-- Modal Header -->
             <div class="flex justify-between items-center border-b p-4">
-                <h2 class="text-lg font-semibold">Add New Ministry</h2>
+                <h2 class="text-lg font-semibold">Add New Service</h2>
                 <button onclick="closeModal('modal')" class="text-gray-500 hover:text-gray-700 text-xl">&times;</button>
             </div>
 
             <!-- Modal Body -->
             <div class="p-4">
-                <form action="{{ route('ministry.addEdit') }}" method="POST">
+                <form action="{{ route('service.addEdit') }}" method="POST">
                     @csrf
                     <div class="mb-3">
-                        <label class="block text-sm font-medium text-gray-700">Ministry Name</label>
+                        <label class="block text-sm font-medium text-gray-700">Service Name</label>
                         <input type="text" name="name" class="w-full px-3 py-2 border rounded" required>
                     </div>
                     <div class="mb-3">
-                        <label class="block text-sm font-medium text-gray-700">Minstry description</label>
-                        <textarea name="description" class="border border-gray-300 rounded-lg p-2 w-full" rows="4" cols="30"></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label class="block text-sm font-medium text-gray-700">Status</label>
-                        <select class="w-full px-3 py-2 border rounded" name="status">
+                        <label class="block text-sm font-medium text-gray-700">Is It A Special Service</label>
+                        <select class="w-full px-3 py-2 border rounded" name="is_special" required>
                             <option disabled selected value="">-- Select an Option --</option>
-                            <option value="1">Active</option>
-                            <option value="0">Inactive</option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
                         </select>
                     </div>
                     <!-- Submit Button -->
@@ -155,23 +147,19 @@
 
             <!-- Edit Modal Body -->
             <div class="p-4">
-                <form action="{{ route('ministry.addEdit') }}" method="POST">
+                <form action="{{ route('service.addEdit') }}" method="POST">
                     @csrf
                     <input name="id" id="id" hidden>
                     <div class="mb-3">
-                        <label class="block text-sm font-medium text-gray-700">Ministry Name</label>
+                        <label class="block text-sm font-medium text-gray-700">Service Name</label>
                         <input type="text" name="name" id="name" class="w-full px-3 py-2 border rounded" required>
                     </div>
                     <div class="mb-3">
-                        <label class="block text-sm font-medium text-gray-700">Minstry description</label>
-                        <textarea id="description" name="description" class="border border-gray-300 rounded-lg p-2 w-full"></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label class="block text-sm font-medium text-gray-700">Status</label>
-                        <select class="w-full px-3 py-2 border rounded" name="status">
+                        <label class="block text-sm font-medium text-gray-700">Is It A Special Service</label>
+                        <select class="w-full px-3 py-2 border rounded" name="is_special" required>
                             <option disabled selected value="">-- Select an Option --</option>
-                            <option value="1">Active</option>
-                            <option value="0">Inactive</option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
                         </select>
                     </div>
                     <!-- Submit Button -->
@@ -204,9 +192,9 @@
 
             modal.querySelector("#id").value = data.id || "";
             modal.querySelector("#name").value = data.name || "";
-            modal.querySelector("#description").value = data.description || "";
+            // modal.querySelector("#description").value = data.is_special || "";
 
-            modal.querySelector('select[name="status"]').value = data.status || "";
+            modal.querySelector('select[name="is_special"]').value = data.is_special || "";
         });
     });
 });

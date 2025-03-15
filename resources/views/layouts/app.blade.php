@@ -194,6 +194,14 @@ gtag("config", "UA-130795909-1");
             </a>
           </li>
         </ul>
+        <ul class="menu-list">
+          <li class="{{ setActive('service.index') }}">
+            <a href="{{ route('service.index') }}">
+              <span class="icon"><i class="mdi mdi-bible"></i></span>
+              <span class="menu-item-label">Services</span>
+            </a>
+          </li>
+        </ul>
         @endif
         <ul class="menu-list">
           <li class="#">

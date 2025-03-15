@@ -9,7 +9,10 @@ use Illuminate\Http\Request;
 class ServiceController extends Controller
 {
     public function index() {
-        $services = Service::get();
+        $services = Service::paginate(20);
+        $pageTitle = "Services";
+        // dd($services);
+        return view('admin.service.index', compact('services', 'pageTitle'));
     }
 
     public function addEdit (Request $request) {
@@ -19,9 +22,9 @@ class ServiceController extends Controller
 
         if ($request->has('id')) {
             // Ignore the current ID when checking uniqueness
-            $rules['name'] .= '|unique:ministries,name,' . $request->id;
+            $rules['name'] .= '|unique:services,name,' . $request->id;
         } else {
-            $rules['name'] .= '|unique:ministries,name';
+            $rules['name'] .= '|unique:services,name';
         }
 
         $validatedData = $request->validate($rules);
@@ -29,9 +32,12 @@ class ServiceController extends Controller
         if($request->has('id')) {
             $service = Service::findOrFail($request->id);
             $service->name = $request->name;
+            $service->is_special = $request->is_special;
             $service->save();
         } else {
             Service::create($validatedData);
         }
+
+        return to_route('service.index');
     }
 }
