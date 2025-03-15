@@ -12,5 +12,12 @@ class Service extends Model
     protected $fillable = [
         'name',
         'is_special',
+        'bacenta_level',
+        'sunday_service',
     ];
+
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class);
+    }
 }

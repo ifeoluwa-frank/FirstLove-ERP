@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\BacentaController;
 // use App\Http\Controllers\BacentaAuthController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\MinistryController;
+use App\Http\Controllers\Admin\AttendanceController;
 use App\Http\Controllers\Bacenta\Auth\BacentaAuthController;
 
 Route::get('/', function () {
@@ -40,6 +41,12 @@ Route::prefix('admin')->group(function () {
         // SERVICE CONTROLLER ROUTES
         Route::get('/services', [ServiceController::class, 'index'])->name('service.index');
         Route::post('/add-update-service', [ServiceController::class, 'addEdit'])->name('service.addEdit');
+
+        // ATTENDANCE CONTROLLER ROUTES
+        Route::prefix('attendance')->group(function () {
+            Route::get('/', [AttendanceController::class, 'index'])->name('attendance.index');
+            Route::post('/headcount', [AttendanceController::class, 'saveHeadcount'])->name('attendance.headcount');
+        });
     });
 });
 

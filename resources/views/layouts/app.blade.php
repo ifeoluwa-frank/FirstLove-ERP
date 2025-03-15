@@ -179,8 +179,8 @@ gtag("config", "UA-130795909-1");
         </ul>
         
         <ul class="menu-list">
-          <li class="#">
-            <a href="#">
+          <li class="{{ setActive('attendance.index') }}">
+            <a href="{{ route('attendance.index') }}">
               <span class="icon"><i class="mdi mdi-account-multiple-plus"></i></span>
               <span class="menu-item-label">Attendance</span>
             </a>

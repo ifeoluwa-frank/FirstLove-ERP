@@ -15,29 +15,36 @@ class ServiceController extends Controller
         return view('admin.service.index', compact('services', 'pageTitle'));
     }
 
-    public function addEdit (Request $request) {
+    public function addEdit(Request $request) {
         $rules = [
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:255|unique:services,name' . ($request->id ? ',' . $request->id : ''),
+            'is_special' => 'sometimes|boolean', 
+            'bacenta_level' => 'sometimes|boolean',
+            'sunday_service' => 'sometimes|boolean',
         ];
-
-        if ($request->has('id')) {
-            // Ignore the current ID when checking uniqueness
-            $rules['name'] .= '|unique:services,name,' . $request->id;
-        } else {
-            $rules['name'] .= '|unique:services,name';
-        }
-
+    
         $validatedData = $request->validate($rules);
-
-        if($request->has('id')) {
+    
+        if ($request->has('id')) {
+            // Update existing service
             $service = Service::findOrFail($request->id);
-            $service->name = $request->name;
-            $service->is_special = $request->is_special;
-            $service->save();
+            $service->update([
+                'name' => $validatedData['name'],
+                'is_special' => $request->has('is_special') ? $request->is_special : false,
+                'bacenta_level' => $request->has('bacenta_level') ? $request->bacenta_level : false,
+                'sunday_service' => $request->has('sunday_service') ? $request->sunday_service : false,
+            ]);
         } else {
-            Service::create($validatedData);
+            // Create a new service
+            Service::create([
+                'name' => $validatedData['name'],
+                'is_special' => $request->has('is_special') ? $request->is_special : false,
+                'bacenta_level' => $request->has('bacenta_level') ? $request->bacenta_level : false,
+                'sunday_service' => $request->has('sunday_service') ? $request->sunday_service : false,
+            ]);
         }
-
+    
         return to_route('service.index');
     }
+    
 }

@@ -2,17 +2,24 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Service;
 use App\Models\Attendance;
 use Illuminate\Http\Request;
 use App\Models\UsherHeadcount;
 use App\Models\BusingAttendance;
+use App\Http\Controllers\Controller;
 use App\Models\MembershipAttendance;
 
 class AttendanceController extends Controller
 {
     public function index() {
-
+        $pageTitle = "Attendance";
+        $sundayService = Service::where('sunday_service', 1)->where('is_special', 0)->first();
+        $ushersHeadcount = UsherHeadcount::with('service')->where('service_id', $sundayService->id)->latest('service_date')->first();
+        $services = Service::get();
+        // dd($sundayService);
+    
+        return view('admin.attendance.index', compact('pageTitle', 'ushersHeadcount', 'services', 'sundayService'));
     }
 
     public function saveHeadcount(Request $request) {
@@ -23,6 +30,8 @@ class AttendanceController extends Controller
         $attendance->headcount = $request->headcount;
 
         $attendance->save();
+
+        return to_route('attendance.index');
     }
 
     public function saveBusingAttendance(Request $request) {

@@ -55,6 +55,8 @@
                     <th>S/N</th>
                     <th>Service Name</th>
                     <th>Special</th>
+                    <th>Bacenta Level</th>
+                    <th>Sunday Service</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -73,9 +75,30 @@
                         @endphp
                         {{ $is_special }}
                     </td>
+                    <td data-label="Bacenta Level" class="progress-cell">
+                        @php
+                            if ($service->bacenta_level) {
+                                $bacenta_level = "Yes";
+                            } else {
+                                $bacenta_level = "No";
+                            }
+                        @endphp
+                        {{ $bacenta_level }}
+                    </td>
+                    <td data-label="Sunday" class="progress-cell">
+                        @php
+                            if ($service->sunday_service) {
+                                $sunday_service = "Yes";
+                            } else {
+                                $sunday_service = "No";
+                            }
+                        @endphp
+                        {{ $sunday_service }}
+                    </td>
                     <td data-label="edit" class="actions-cell">
                         <button onclick="openModal('editModal')" class="bg-orange-600 text-white py-1 px-2 rounded hover:bg-orange-700 editBtn modalButton"
-                                data-id="{{ $service->id }}" data-name="{{ $service->name }}" data-is_special="{{ $service->is_special }}" id="editBtn">
+                                data-id="{{ $service->id }}" data-name="{{ $service->name }}" data-is_special="{{ $service->is_special }}" data-bacenta_level="{{ $service->bacenta_level }}" 
+                                data-sunday_service="{{ $service->sunday_service }}" id="editBtn">
                                 Edit
                         </button>
                     </td>
@@ -128,6 +151,24 @@
                             <option value="0">No</option>
                         </select>
                     </div>
+
+                    <div class="mb-3">
+                        <label class="block text-sm font-medium text-gray-700">Is It A Sunday Service</label>
+                        <select class="w-full px-3 py-2 border rounded" name="sunday_service" required>
+                            <option disabled selected value="">-- Select an Option --</option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="block text-sm font-medium text-gray-700">Is It A Bacenta Level Service</label>
+                        <select class="w-full px-3 py-2 border rounded" name="bacenta_level" required>
+                            <option disabled selected value="">-- Select an Option --</option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
                     <!-- Submit Button -->
                     <div class="text-right">
                         <button type="submit" class="w-full bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition">Submit</button>
@@ -157,6 +198,24 @@
                     <div class="mb-3">
                         <label class="block text-sm font-medium text-gray-700">Is It A Special Service</label>
                         <select class="w-full px-3 py-2 border rounded" name="is_special" required>
+                            <option disabled selected value="">-- Select an Option --</option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="block text-sm font-medium text-gray-700">Is It A Sunday Service</label>
+                        <select class="w-full px-3 py-2 border rounded" name="sunday_service" required>
+                            <option disabled selected value="">-- Select an Option --</option>
+                            <option value="1">Yes</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="block text-sm font-medium text-gray-700">Is It A Bacenta Level Service</label>
+                        <select class="w-full px-3 py-2 border rounded" name="bacenta_level" required>
                             <option disabled selected value="">-- Select an Option --</option>
                             <option value="1">Yes</option>
                             <option value="0">No</option>
@@ -195,6 +254,8 @@
             // modal.querySelector("#description").value = data.is_special || "";
 
             modal.querySelector('select[name="is_special"]').value = data.is_special || "";
+            modal.querySelector('select[name="bacenta_level"]').value = data.bacenta_level || "";
+            modal.querySelector('select[name="sunday_service"]').value = data.sunday_service || "";
         });
     });
 });
