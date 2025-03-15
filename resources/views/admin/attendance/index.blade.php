@@ -34,7 +34,7 @@
             <div class="grid gap-6 grid-cols-1 md:grid-cols-2 mb-6">
                 <div class="card">
                     <div class="card-content">
-                      <h2 class="text-2xl ml-2 mb-3">{{ $sundayService->name }} - {{ $ushersHeadcount->service_date }}</h2>
+                      <h2 class="text-2xl ml-2 mb-3">{{ $sundayService->name }} - {{ $ushersHeadcount->service_date ?? "" }}</h2>
                         <div class="flex align-center justify-between mb-3">
                           <div class="flex gap-3">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="svgs">
@@ -48,7 +48,7 @@
                           
                           <div class="align-center rounded-md">
                               
-                              <h1 class="text-xl font-extrabold mt-1">{{ $ushersHeadcount->headcount }}</h1>
+                              <h1 class="text-xl font-extrabold mt-1">{{ $ushersHeadcount->headcount ?? "" }}</h1>
                           </div>
                       </div>
                     </div>
