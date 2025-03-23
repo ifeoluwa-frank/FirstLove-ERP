@@ -177,14 +177,34 @@ gtag("config", "UA-130795909-1");
             </a>
           </li>
         </ul>
-        
+
         <ul class="menu-list">
-          <li class="{{ setActive('attendance.index') }}">
-            <a href="{{ route('attendance.index') }}">
+          <li>
+            <a class="dropdown">
               <span class="icon"><i class="mdi mdi-account-multiple-plus"></i></span>
               <span class="menu-item-label">Attendance</span>
+              <span class="icon"><i class="mdi mdi-plus"></i></span>
             </a>
+            <ul>
+              <li class="{{ setActive('attendance.index') }}">
+                <a href="{{ route('attendance.index') }}">
+                  <span class="icon"><i class="mdi mdi-view-list"></i></span>
+                  <span class="menu-item-label">Attendance Home</span>
+                </a>
+              </li>
+              <li class="{{ setActive('attendance.record') }}">
+                <a href="{{ route('attendance.record') }}">
+                  <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
+                  <span class="menu-item-label">Record Attendance</span>
+                </a>
+              </li>
+            </ul>
           </li>
+        </ul>
+        
+        <ul class="menu-list">
+          
+          
         </ul>
         <ul class="menu-list">
           <li class="{{ setActive('ministry.index') }}">

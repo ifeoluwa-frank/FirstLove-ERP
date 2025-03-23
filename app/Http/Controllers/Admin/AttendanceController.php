@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Carbon\Carbon;
 use App\Models\Service;
 use App\Models\Attendance;
 use Illuminate\Http\Request;
@@ -12,14 +13,65 @@ use App\Models\MembershipAttendance;
 
 class AttendanceController extends Controller
 {
-    public function index() {
+    public function index(Request $request) {
         $pageTitle = "Attendance";
+        $error = "";
+
+        // GET SUNDAY ATTENDANCE
         $sundayService = Service::where('sunday_service', 1)->where('is_special', 0)->first();
-        $ushersHeadcount = UsherHeadcount::with('service')->where('service_id', $sundayService->id)->latest('service_date')->first();
-        $services = Service::get();
-        // dd($sundayService);
+        if($request->has('service_date')){
+            // Get Sunday Attendance Based On Date Filter
+
+            $isSunday = Carbon::parse($request->service_date)->isSunday();
+            if($isSunday){
+                // Users Headcount Attendance
+                $ushersHeadcount = UsherHeadcount::with('service')
+                ->where('service_id', $sundayService->id)
+                ->where('service_date', $request->service_date)
+                ->first();
+        
+                // TODO:: Busing Attendance
+                // TODO:: Membership Attendance
+            } else {
+                $error = "Date Not A Sunday";
+                $ushersHeadcount = [];
+                // TODO:: Assign empty array to other attendance types
+            }
+        } else {
+
+            // Users Headcount Attendance
+            $ushersHeadcount = UsherHeadcount::with('service')
+            ->where('service_id', $sundayService->id)
+            ->latest('service_date')
+            ->first();
     
-        return view('admin.attendance.index', compact('pageTitle', 'ushersHeadcount', 'services', 'sundayService'));
+            // TODO:: Busing Attendance
+            // TODO:: Membership Attendance
+        }
+
+        $services = Service::get();
+        //GET MIDWEEK SERVICE ATTENDANCE
+        $bacentaService = Service::where('bacenta_level', 1)->where('sunday_service', 0)->first();
+
+        $startOfWeek = Carbon::now()->startOfWeek(); // Get Monday of the current week
+        $endOfWeek = Carbon::now()->endOfWeek(); // Get Sunday of the current week
+
+        $membershipAttendance = MembershipAttendance::with('bacenta')
+        ->whereBetween('service_date', [$startOfWeek, $endOfWeek])
+        ->where('service_id', $bacentaService->id)
+        ->get();
+    
+        return view('admin.attendance.index', compact('pageTitle', 'ushersHeadcount', 'services', 'sundayService', 'bacentaService', 'membershipAttendance', 'error'));
+    }
+
+    public function record() {
+        $pageTitle = "Record Attendance";
+
+        $headcounts = UsherHeadcount::orderBy('created_at', 'asc')->limit(5)->get();
+        // Services
+        $services = Service::where('bacenta_level', 0)->get();
+
+        return view('admin.attendance.record', compact('pageTitle', 'headcounts', 'services'));
     }
 
     public function saveHeadcount(Request $request) {
@@ -31,7 +83,7 @@ class AttendanceController extends Controller
 
         $attendance->save();
 
-        return to_route('attendance.index');
+        return to_route('attendance.record');
     }
 
     public function saveBusingAttendance(Request $request) {
