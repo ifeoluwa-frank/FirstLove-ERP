@@ -99,7 +99,7 @@
                   </div>
               <div class="card">
                 <div class="card-content">
-                  @if($membershipAttendance->isNotEmpty())
+                  @if($membershipAttendance)
                     <div class="flex items-center justify-between">
                       <div class="widget-label">
                         <h3>Bacentas Attendance - {{ $membershipAttendance }}</h3>
