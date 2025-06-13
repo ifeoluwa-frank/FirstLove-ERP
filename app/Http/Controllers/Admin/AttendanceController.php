@@ -56,10 +56,14 @@ class AttendanceController extends Controller
         $startOfWeek = Carbon::now()->startOfWeek(); // Get Monday of the current week
         $endOfWeek = Carbon::now()->endOfWeek(); // Get Sunday of the current week
 
-        $membershipAttendance = MembershipAttendance::with('bacenta')
-        ->whereBetween('service_date', [$startOfWeek, $endOfWeek])
-        ->where('service_id', $bacentaService->id)
-        ->get();
+        $membershipAttendance = null;
+        if($bacentaService){
+            $membershipAttendance = MembershipAttendance::with('bacenta')
+            ->whereBetween('service_date', [$startOfWeek, $endOfWeek])
+            ->where('service_id', $bacentaService->id)
+            ->get();
+        }
+        
     
         return view('admin.attendance.index', compact('pageTitle', 'ushersHeadcount', 'services', 'sundayService', 'bacentaService', 'membershipAttendance', 'error'));
     }
