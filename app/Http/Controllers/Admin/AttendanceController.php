@@ -127,6 +127,6 @@ class AttendanceController extends Controller
     }
 
     public function busing_home(){
-        return view('admin.attendance.busing_attendance', compact());
+        return view('admin.attendance.busing_attendance');
     }
 }
