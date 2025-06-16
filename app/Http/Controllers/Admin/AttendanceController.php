@@ -125,4 +125,7 @@ class AttendanceController extends Controller
 
         $mebership_attendance->save();
     }
+
+    public function busing_home(){
+        return view('admin.attendance.busing_attendance', compact());
 }

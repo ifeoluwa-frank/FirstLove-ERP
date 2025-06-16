@@ -46,6 +46,7 @@ Route::prefix('admin')->group(function () {
         Route::prefix('attendance')->group(function () {
             Route::get('/', [AttendanceController::class, 'index'])->name('attendance.index');
             Route::get('/record', [AttendanceController::class, 'record'])->name('attendance.record');
+            Route::get('/busing', [AttendanceController::class, 'busing_home'])->name('attendance.busing');
             Route::post('/headcount', [AttendanceController::class, 'saveHeadcount'])->name('attendance.headcount');
         });
     });
