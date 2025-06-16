@@ -198,8 +198,8 @@ gtag("config", "UA-130795909-1");
                   <span class="menu-item-label">Record Attendance</span>
                 </a>
               </li>
-              <li class="{{ setActive('attendance.record') }}">
-                <a href="{{ route('attendance.record') }}">
+              <li class="{{ setActive('attendance.busing') }}">
+                <a href="{{ route('attendance.busing') }}">
                   <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
                   <span class="menu-item-label">Busing Attendance</span>
                 </a>
