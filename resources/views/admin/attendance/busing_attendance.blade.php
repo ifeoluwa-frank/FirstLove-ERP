@@ -24,7 +24,7 @@
         <label class="label">Select Service</label>
         <div class="control">
           <div class="select w-full">
-            <select>
+            <select name="service_id" required>
                 <option disabled selected value="">-- Select a Service --</option>
                 @forelse($services as $service)
                     <option value="{{ $service->id }}">{{ $service->name }}</option>
@@ -51,7 +51,7 @@
                     <td>{{ $bacenta->bacenta_name }}</td>
                     <td>
                         <div class="control">
-                            <input type="number" name="{{ $bacenta->id }}" class="input" placeholder="Enter Busing Number" min="0">
+                            <input type="number" name="{{ $bacenta->id }}" class="input" placeholder="Enter Busing Number" min="0" required>
                         </div>
                     </td>
                 </tr>
