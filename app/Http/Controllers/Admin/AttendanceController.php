@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Carbon\Carbon;
+use App\Models\Bacenta;
 use App\Models\Service;
 use App\Models\Attendance;
 use Illuminate\Http\Request;
@@ -91,6 +92,7 @@ class AttendanceController extends Controller
     }
 
     public function saveBusingAttendance(Request $request) {
+        dd($request);
         $attendance = new BusingAttendance();
 
         $attendance->service_id = $request->service_id;
@@ -127,6 +129,8 @@ class AttendanceController extends Controller
     }
 
     public function busing_home(){
-        return view('admin.attendance.busing_attendance');
+        $bacentas = Bacenta::get();
+        $services = Service::get();
+        return view('admin.attendance.busing_attendance', compact('bacentas', 'services'));
     }
 }
