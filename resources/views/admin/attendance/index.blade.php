@@ -37,7 +37,7 @@
             <div class="grid gap-6 grid-cols-1 md:grid-cols-2 mb-6">
                 <div class="card">
                     <div class="card-content">
-                      <h2 class="text-2xl ml-2 mb-3">{{ $sundayService->name }} - {{ $ushersHeadcount->service_date ?? "" }}</h2>
+                      <h2 class="text-lg ml-2 mb-3">{{ $sundayService->name }} - {{ $serviceDate->format('l, F j, Y') ?? "" }}</h2>
                       @if(!empty($error))
                         <h2>{{ $error }}</h2>
                       @else
@@ -242,7 +242,7 @@
 
     var ctx = document.getElementById('attendanceChart').getContext('2d');
 
-    const attendanceData = [{{ $ushersHeadcount->headcount ?? 0 }}, {{ $ushersHeadcount->headcount ?? 0 }}, {{ $ushersHeadcount->headcount ?? 0 }}]; // Replace with dynamic data
+    const attendanceData = [{{ $ushersHeadcount->headcount ?? 0 }}, {{ $busingAttendace ?? 0 }}, {{ $busingAttendace ?? 0 }}]; // Replace with dynamic data
     const average = (attendanceData.reduce((a, b) => a + b, 0) / attendanceData.length).toFixed(1); // ✅ Calculate average
 
     var attendanceChart = new Chart(ctx, {

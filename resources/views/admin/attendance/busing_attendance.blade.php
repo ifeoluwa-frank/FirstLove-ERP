@@ -16,6 +16,12 @@
     </p>
   </header>
 
+  @if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+  @endif
+
   <div class="card-content">
     <form action="{{ route('attendance.busing.submit') }}" method="POST">
       @csrf

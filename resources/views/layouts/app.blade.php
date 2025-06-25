@@ -124,22 +124,22 @@ gtag("config", "UA-130795909-1");
           <a title="Log out" class="navbar-item desktop-icon-only">
             
             @if(Auth::guard('web')->check())
-            <form action="{{ route('logout') }}" method="POST" class="ml-4">
-              @csrf
-              {{-- <span class="icon"> --}}
-              <button type="submit" class="text-sm text-gray-700 mt-4">
-                <i class="mdi mdi-logout mdi-24px"></i>
-              </button>
-            {{-- </span> --}}
-          </form>
-          @else
-          <form method="POST" action="{{ route('bacenta.logout') }}">
-            @csrf
-            <button type="submit" class="text-sm text-gray-700 mt-4">
-              <i class="mdi mdi-logout mdi-24px"></i>
-            </button>
-          </form>
-          @endif
+              <form action="{{ route('logout') }}" method="POST" class="ml-4">
+                @csrf
+                {{-- <span class="icon"> --}}
+                <button type="submit" class="text-sm text-gray-700 mt-4">
+                  <i class="mdi mdi-logout mdi-24px"></i>
+                </button>
+              {{-- </span> --}}
+              </form>
+            @else
+              <form method="POST" action="{{ route('bacenta.logout') }}">
+                @csrf
+                <button type="submit" class="text-sm text-gray-700 mt-4">
+                  <i class="mdi mdi-logout mdi-24px"></i>
+                </button>
+              </form>
+            @endif
           </a>
         </div>
       </div>
@@ -160,74 +160,83 @@ gtag("config", "UA-130795909-1");
           </li>
         </ul>
         @if(Auth::guard('web')->check())
-        <ul class="menu-list">
-          <li class="{{ setActive('member.index') }}">
-            <a href="{{ route('member.index') }}">
-              <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
-              <span class="menu-item-label">Members</span>
-            </a>
-          </li>
-        </ul>
+          <ul class="menu-list">
+            <li class="{{ setActive('member.index') }}">
+              <a href="{{ route('member.index') }}">
+                <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
+                <span class="menu-item-label">Members</span>
+              </a>
+            </li>
+          </ul>
         
-        <ul class="menu-list">
-          <li class="{{ setActive('bacenta.index') }}">
-            <a href="{{ route('bacenta.index') }}">
-              <span class="icon"><i class="mdi mdi-church"></i></span>
-              <span class="menu-item-label">Bacentas</span>
-            </a>
-          </li>
-        </ul>
+          <ul class="menu-list">
+            <li class="{{ setActive('bacenta.index') }}">
+              <a href="{{ route('bacenta.index') }}">
+                <span class="icon"><i class="mdi mdi-church"></i></span>
+                <span class="menu-item-label">Bacentas</span>
+              </a>
+            </li>
+          </ul>
 
-        <ul class="menu-list">
-          <li>
-            <a class="dropdown">
-              <span class="icon"><i class="mdi mdi-account-multiple-plus"></i></span>
-              <span class="menu-item-label">Attendance</span>
-              <span class="icon"><i class="mdi mdi-plus"></i></span>
-            </a>
-            <ul>
-              <li class="{{ setActive('attendance.index') }}">
-                <a href="{{ route('attendance.index') }}">
-                  <span class="icon"><i class="mdi mdi-view-list"></i></span>
-                  <span class="menu-item-label">Attendance Home</span>
-                </a>
-              </li>
-              <li class="{{ setActive('attendance.record') }}">
-                <a href="{{ route('attendance.record') }}">
-                  <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
-                  <span class="menu-item-label">Record Attendance</span>
-                </a>
-              </li>
-              <li class="{{ setActive('attendance.busing') }}">
-                <a href="{{ route('attendance.busing') }}">
-                  <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
-                  <span class="menu-item-label">Busing Attendance</span>
-                </a>
-              </li>
-            </ul>
-          </li>
-        </ul>
+          <ul class="menu-list">
+            <li>
+              <a class="dropdown">
+                <span class="icon"><i class="mdi mdi-account-multiple-plus"></i></span>
+                <span class="menu-item-label">Attendance</span>
+                <span class="icon"><i class="mdi mdi-plus"></i></span>
+              </a>
+              <ul>
+                <li class="{{ setActive('attendance.index') }}">
+                  <a href="{{ route('attendance.index') }}">
+                    <span class="icon"><i class="mdi mdi-view-list"></i></span>
+                    <span class="menu-item-label">Attendance Home</span>
+                  </a>
+                </li>
+                <li class="{{ setActive('attendance.record') }}">
+                  <a href="{{ route('attendance.record') }}">
+                    <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
+                    <span class="menu-item-label">Record Attendance</span>
+                  </a>
+                </li>
+                <li class="{{ setActive('attendance.busing') }}">
+                  <a href="{{ route('attendance.busing') }}">
+                    <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
+                    <span class="menu-item-label">Busing Attendance</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
         
-        <ul class="menu-list">
-          
-          
-        </ul>
-        <ul class="menu-list">
-          <li class="{{ setActive('ministry.index') }}">
-            <a href="{{ route('ministry.index') }}">
-              <span class="icon"><i class="mdi mdi-microphone-variant"></i></span>
-              <span class="menu-item-label">Sontas</span>
-            </a>
-          </li>
-        </ul>
-        <ul class="menu-list">
-          <li class="{{ setActive('service.index') }}">
-            <a href="{{ route('service.index') }}">
-              <span class="icon"><i class="mdi mdi-bible"></i></span>
-              <span class="menu-item-label">Services</span>
-            </a>
-          </li>
-        </ul>
+          <ul class="menu-list"> 
+          </ul>
+          <ul class="menu-list">
+            <li class="{{ setActive('ministry.index') }}">
+              <a href="{{ route('ministry.index') }}">
+                <span class="icon"><i class="mdi mdi-microphone-variant"></i></span>
+                <span class="menu-item-label">Sontas</span>
+              </a>
+            </li>
+          </ul>
+          <ul class="menu-list">
+            <li class="{{ setActive('service.index') }}">
+              <a href="{{ route('service.index') }}">
+                <span class="icon"><i class="mdi mdi-bible"></i></span>
+                <span class="menu-item-label">Services</span>
+              </a>
+            </li>
+          </ul>
+        @endif
+
+        @if(Auth::guard('bacenta')->check())
+          <ul class="menu-list">
+            <li class="{{ setActive('members.index') }}">
+              <a href="{{ route('members.index') }}">
+                <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
+                <span class="menu-item-label">Members</span>
+              </a>
+            </li>
+          </ul>
         @endif
         <ul class="menu-list">
           <li class="#">
