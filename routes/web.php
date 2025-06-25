@@ -8,9 +8,10 @@ use App\Http\Controllers\Admin\BacentaController;
 // use App\Http\Controllers\BacentaAuthController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\MinistryController;
+use App\Http\Controllers\Bacenta\MembersController;
 use App\Http\Controllers\Admin\AttendanceController;
 use App\Http\Controllers\Bacenta\Auth\BacentaAuthController;
-use App\Http\Controllers\Bacenta\MembersController;
+use App\Http\Controllers\Bacenta\BacentaAttendanceController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -72,6 +73,7 @@ Route::prefix('bacenta')->group(function () {
         })->name('bacenta.dashboard');
 
         Route::get('member', [MembersController::class, 'index'])->name('members.index');
+        Route::get('membership/attendance', [BacentaAttendanceController::class, 'index'])->name('membership.index');
     });
 });
 

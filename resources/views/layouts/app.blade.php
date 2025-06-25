@@ -237,6 +237,15 @@ gtag("config", "UA-130795909-1");
               </a>
             </li>
           </ul>
+
+          <ul class="menu-list">
+            <li class="{{ setActive('membership.index') }}">
+              <a href="{{ route('membership.index') }}">
+                <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
+                <span class="menu-item-label">Attendance</span>
+              </a>
+            </li>
+          </ul>
         @endif
         <ul class="menu-list">
           <li class="#">
