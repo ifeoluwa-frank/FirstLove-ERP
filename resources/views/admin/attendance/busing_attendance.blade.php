@@ -30,7 +30,7 @@
               <select name="service_id" required>
                 <option disabled selected value="">Select a Service</option>
                 @forelse($services as $service)
-                    <option value="{{ $service->id }}">{{ $service->name }}</option>
+                  <option value="{{ $service->id }}">{{ $service->name }}</option>
                 @empty
                 @endforelse
               </select>

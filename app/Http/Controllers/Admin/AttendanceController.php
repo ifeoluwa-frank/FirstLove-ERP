@@ -92,15 +92,36 @@ class AttendanceController extends Controller
     }
 
     public function saveBusingAttendance(Request $request) {
-        dd($request);
-        $attendance = new BusingAttendance();
+        // dd($request);
 
-        $attendance->service_id = $request->service_id;
-        $attendance->service_date = $request->service_date;
-        $attendance->bacenta_id = $request->bacenta_id;
-        $attendance->bus_count = $request->bus_count;
+        $serviceId = $request->input('service_id');
+        $serviceDate = $request->input('service_date');
 
-        $attendance->save();
+        $existBefore = BusingAttendance::where('service_id', $serviceId)
+            ->where('service_date', $serviceDate)
+            ->exists();
+
+        if ($existBefore) {
+            return back()->with('error', 'You cannot record multiple busing attendances for the same service on the same day.');
+        }
+
+        foreach ($request->all() as $key => $value) {
+            // Skip the known non-bacenta keys
+            if (in_array($key, ['_token', 'service_id', 'service_date'])) {
+                continue;
+            }
+
+            // Ensure key is numeric and value is not null
+            if (is_numeric($key) && $value !== null) {
+                BusingAttendance::create([
+                    'bacenta_id'   => $key,      // key is bacenta_id
+                    'bus_count'   => $value,    // value is the count
+                    'service_id'   => $serviceId,
+                    'service_date' => $serviceDate,
+                ]);
+            }
+        }
+        return to_route('attendance.index');
     }
 
     public function attendance(Request $request) {
