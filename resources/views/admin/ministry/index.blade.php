@@ -33,7 +33,11 @@
             <div class="flex justify-between items-center mb-4">
                 <h1 class="text-xl font-bold"></h1>
                 <!-- Add New Bacenta Button -->
-                <button onclick="openModal('modal')" class="bg-orange-600 text-white px-4 py-2 rounded hover:bg-orange-700 modalButton">+ Add Sonta</button>
+                <button onclick="openModal('modal')" style="background-color:#0ca678; color:#fff; padding:0.5rem 1rem; border-radius:0.375rem;" 
+                        onmouseover="this.style.backgroundColor='#087f5b'" 
+                        onmouseout="this.style.backgroundColor='#0ca678'">
+                + Add Sonta
+                </button>
             </div>
             
         <div class="card has-table">
@@ -76,12 +80,15 @@
                         {{ $status }}
                     </td>
                     <td data-label="edit" class="actions-cell">
-                        <button onclick="openModal('editModal')" class="bg-orange-600 text-white py-1 px-2 rounded hover:bg-orange-700 editBtn modalButton"
-                                data-id="{{ $ministry->id }}" data-name="{{ $ministry->name }}" data-description="{{ $ministry->description }}"
-                                data-status="{{ $ministry->status }}" id="editBtn"
-                                >
-                                    Edit
-                        </button>
+                        <button onclick="openModal('editModal')" 
+                        style="background-color: #0ca678; color: white; padding: 0.25rem 0.5rem; border-radius: 0.375rem; cursor: pointer; transition: background-color 0.3s;"
+                        onmouseover="this.style.backgroundColor='#087f5b'"
+                        onmouseout="this.style.backgroundColor='#0ca678'"
+                        data-id="{{ $ministry->id }}" data-name="{{ $ministry->name }}" data-description="{{ $ministry->description }}" data-status="{{ $ministry->status }}" id="editBtn"
+                    >
+                        Edit
+                    </button>
+
                     </td>
                   </tr>
                   @empty

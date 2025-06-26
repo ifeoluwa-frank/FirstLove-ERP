@@ -43,7 +43,10 @@
             @endif
             <div class="flex justify-between items-center mb-4">
                 <div></div>
-                <button onclick="openModal('modal')" class="bg-orange-600 text-white px-4 py-2 rounded hover:bg-orange-700 modalButton">+ Add Bacenta</button>
+            <button onclick="openModal('modal')" 
+                class="bg-[#0ca678] text-white px-4 py-2 rounded hover:bg-[#087f5b] transition duration-200 modalButton">
+                + Add Bacenta
+            </button>
             </div>
             
         <div class="card has-table">
@@ -211,7 +214,10 @@
 
                     <!-- Submit Button -->
                     <div class="text-right">
-                        <button type="submit" class="w-full bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 transition">Submit</button>
+                      <button type="submit" 
+                          class="w-full bg-[#0ca678] text-white px-4 py-2 rounded hover:bg-[#087f5b] transition">
+                          Submit
+                      </button>
                     </div>
                 </form>
             </div>
@@ -237,6 +243,7 @@
                     </div>
                     <div class="mb-3">
                         <label class="block text-sm font-medium text-gray-700">Bacenta Leader</label>
+                        
                         {{-- <input type="text" name="bacenta_leader_id" id="lead_id" class="w-full px-3 py-2 border rounded" required> --}}
                         <select class="w-full px-3 py-2 border rounded" name="bacenta_leader_id">
                             <option disabled selected value="">-- Select an Option --</option>
@@ -270,7 +277,9 @@
 
                     <!-- Submit Button -->
                     <div class="text-right">
-                        <button type="submit" class="bg-yellow-500 text-white px-4 py-2 rounded">Submit</button>
+                    <button type="submit" class="w-full bg-[#0ca678] text-white px-4 py-2 rounded hover:bg-[#087f5b] transition">
+                        Submit
+                    </button>
                     </div>
                 </form>
             </div>

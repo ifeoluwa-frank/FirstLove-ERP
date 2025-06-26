@@ -13,7 +13,9 @@
         <div class="flex justify-between items-center mb-4">
             <h1 class="text-xl font-bold">Bacenta List</h1>
             <!-- Add New Bacenta Button -->
-            <button onclick="openModal('modal')" class="bg-orange-600 text-white px-4 py-2 rounded hover:bg-orange-700 modalButton">+ Add New Bacenta</button>
+            <button onclick="openModal('modal')" class="bg-[#0ca678] text-white px-4 py-2 rounded hover:bg-[#087f5b] modalButton">
+            + Add New Bacenta
+            </button>
             
         </div>
 
