@@ -17,8 +17,13 @@
     <div class="p-6 bg-white shadow-md m-6 rounded-lg">
         <div class="flex justify-between items-center mb-4">
             <h1 class="text-xl font-bold">Members</h1>
-            <!-- Add New Bacenta Button -->
-            <a href="{{ route('member.create') }}" class="bg-orange-600 text-white px-4 py-2 rounded hover:bg-orange-700 modalButton">+ Add New Member</a>
+            <!-- Add New Member Button -->
+            <a href="{{ route('member.create') }}"
+                  style="background-color: #0ca678; color: #fff; padding: 8px 16px; border-radius: 6px; display: inline-block; text-decoration: none;"
+                  onmouseover="this.style.backgroundColor='#087f5b'"
+                  onmouseout="this.style.backgroundColor='#0ca678'">
+                  + Add New Member
+                </a>
         </div>
         
         <!-- Table -->
