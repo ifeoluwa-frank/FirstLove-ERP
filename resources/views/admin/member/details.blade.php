@@ -30,7 +30,7 @@
                   <div class="image w-48 h-48 mx-auto">
                     {{-- <img src="https://avatars.dicebear.com/v2/initials/john-doe.svg" alt="John Doe" class="rounded-full"> --}}
                     @if($member->profile_picture)
-                        <img src="{{ asset('storage/' . $member->profile_picture) }}" alt="Profile Picture" class="rounded-full">
+                        <img src="{{ asset('storage/' . $member->profile_picture) }}" alt="Profile Picture" class="rounded-full" width="150">
                     @else
                         <img src="https://avatars.dicebear.com/v2/initials/john-doe.svg" alt="John Doe" class="rounded-full">
                     @endif
