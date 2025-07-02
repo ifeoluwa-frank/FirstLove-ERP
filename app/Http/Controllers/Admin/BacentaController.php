@@ -33,7 +33,10 @@ class BacentaController extends Controller
             $bacenta->location = $request->location;
             $bacenta->is_active = $request->is_active;
             $bacenta->username = $request->username;
-            $bacenta->password = Hash::make($request->password);
+
+            if($request->filled('password')){
+                $bacenta->password = Hash::make($request->password);
+            }
             $bacenta->save();
 
             return to_route('bacenta.index');

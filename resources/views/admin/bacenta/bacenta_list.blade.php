@@ -272,7 +272,10 @@
                     </div>
                     <div class="mb-3">
                         <label class="block text-sm font-medium text-gray-700">Password</label>
-                        <input type="text" name="password" id="password" class="w-full px-3 py-2 border rounded" required>
+                        <span class="text-xs text-red-500 italic block mt-1">
+                            Leave empty if you do not intend to change password
+                        </span>
+                        <input type="text" name="password" id="password" class="w-full px-3 py-2 border rounded">
                     </div>
 
                     <!-- Submit Button -->
