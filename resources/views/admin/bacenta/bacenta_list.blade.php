@@ -82,7 +82,7 @@
                   <tr>
                     <td data-label="Serial">{{ __($loop->index + $bacentas->firstItem()) }}</td>
                     <td data-label="Name">{{ $bacenta->bacenta_name }}</td>
-                    <td data-label="Leader">{{ $bacenta->leader->first_name ?? '' . " " . $bacenta->leader->last_name ?? ''}}</td>
+                    <td data-label="Leader">{{ ($bacenta->leader->first_name ?? '') . ' ' . ($bacenta->leader->last_name ?? '')}}</td>
                     <td data-label="Location">{{ $bacenta->location }}</td>
                     <td data-label="Status" class="progress-cell">
                         @php
