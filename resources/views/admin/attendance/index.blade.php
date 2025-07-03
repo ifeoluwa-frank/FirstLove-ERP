@@ -37,7 +37,7 @@
             <div class="grid gap-6 grid-cols-1 md:grid-cols-2 mb-6">
                 <div class="card">
                     <div class="card-content">
-                      <h2 class="text-lg ml-2 mb-3">{{ $sundayService->name }} - {{ $serviceDate->format('l, F j, Y') ?? "" }}</h2>
+                      <h2 class="text-lg ml-2 mb-3">{{ $sundayService->name ?? '' }} - {{ $serviceDate->format('l, F j, Y') ?? "" }}</h2>
                       @if(!empty($error))
                         <h2>{{ $error }}</h2>
                       @else
