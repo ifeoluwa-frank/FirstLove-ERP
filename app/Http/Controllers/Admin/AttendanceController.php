@@ -61,6 +61,9 @@ class AttendanceController extends Controller
                 // TODO:: Membership Attendance
             }
         }
+
+        $ushersHeadcount = null;
+        $busingAttendace = null;
        
 
         $services = Service::get();
