@@ -55,27 +55,27 @@
               
             </header>
             <div class="card-content">
-              <table>
-                <thead>
-                  <tr>
-                    <th>S/N</th>
-                    <th>Name</th>
-                    <th>Phone</th>
-                    <th>School</th>
-                    <th>Fellowship</th>
-                    <th>Ministry</th>
+            <table class="w-full border-collapse shadow-md rounded-lg overflow-hidden text-sm">
+                <thead class="bg-gray-200 text-gray-700">
+                    <tr class="text-left">
+                    <th class="p-2 border border-gray-300">S/N</th>
+                    <th class="p-2 border border-gray-300">Name</th>
+                    <th class="p-2 border border-gray-300">Phone</th>
+                    <th class="p-2 border border-gray-300">School</th>
+                    <th class="p-2 border border-gray-300">Fellowship</th>
+                    <th class="p-2 border border-gray-300">Ministry</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
                     @forelse($members as $member)
                   <tr>
-                    <td data-label="Serial">{{ __($loop->index + $members->firstItem()) }}</td>
-                    <td data-label="Name">{{ $member->first_name }} {{ $member->last_name }}</td>
-                    <td data-label="Phone">{{ $member->phone }}</td>
-                    <td data-label="Phone">{{ $member->school }}</td>
-                    <td data-label="Location">{{ $member->bacenta->bacenta_name }}</td>
-                    <td data-label="Sonta">{{ $member->fellowship->name ?? " "}}</td>
+                    <td class="p-2 border border-gray-300" data-label="Serial">{{ __($loop->index + $members->firstItem()) }}</td>
+                    <td class="p-2 border border-gray-300" data-label="Name">{{ $member->first_name }} {{ $member->last_name }}</td>
+                    <td class="p-2 border border-gray-300" data-label="Phone">{{ $member->phone }}</td>
+                    <td class="p-2 border border-gray-300" data-label="Phone">{{ $member->school }}</td>
+                    <td class="p-2 border border-gray-300" data-label="Location">{{ $member->bacenta->bacenta_name }}</td>
+                    <td class="p-2 border border-gray-300" data-label="Sonta">{{ $member->fellowship->name ?? " "}}</td>
                     <td class="">
                         <a href="{{ route('member.details', ['id' => $member->id]) }}" class="text-blue-600">
                             <div class="border border-blue-600 rounded-md flex align-center justify-center gap-2 hover:text-white hover:bg-blue-700 py-2">

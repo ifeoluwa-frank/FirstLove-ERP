@@ -62,17 +62,17 @@
               
             </header>
             <div class="card-content">
-              <table>
-                <thead>
-                  <tr>
+            <table class="w-full border-collapse shadow-md rounded-lg overflow-hidden text-sm">
+                <thead class="bg-gray-200 text-gray-700">
+                    <tr class="text-left">
                     {{-- <th></th> --}}
-                    <th>S/N</th>
-                    <th>Bacenta Name</th>
-                    <th>Bacenta Leader</th>
-                    <th>Bacenta Location</th>
-                    <th>Status</th>
-                    <th>Username</th>
-                    <th>Members</th>
+                    <th class="p-2 border border-gray-300">S/N</th>
+                    <th class="p-2 border border-gray-300">Bacenta Name</th>
+                    <th class="p-2 border border-gray-300">Bacenta Leader</th>
+                    <th class="p-2 border border-gray-300">Bacenta Location</th>
+                    <th class="p-2 border border-gray-300">Status</th>
+                    <th class="p-2 border border-gray-300">Username</th>
+                    <th class="p-2 border border-gray-300">Members</th>
                     <th>Action</th>
                     <th></th>
                   </tr>
@@ -80,11 +80,11 @@
                 <tbody>
                     @forelse($bacentas as $bacenta)
                   <tr>
-                    <td data-label="Serial">{{ __($loop->index + $bacentas->firstItem()) }}</td>
-                    <td data-label="Name">{{ $bacenta->bacenta_name }}</td>
-                    <td data-label="Leader">{{ ($bacenta->leader->first_name ?? '') . ' ' . ($bacenta->leader->last_name ?? '')}}</td>
-                    <td data-label="Location">{{ $bacenta->location }}</td>
-                    <td data-label="Status" class="progress-cell">
+                    <td class="p-2 border border-gray-300"  data-label="Serial">{{ __($loop->index + $bacentas->firstItem()) }}</td>
+                    <td class="p-2 border border-gray-300"  data-label="Name">{{ $bacenta->bacenta_name }}</td>
+                    <td class="p-2 border border-gray-300"  data-label="Leader">{{ ($bacenta->leader->first_name ?? '') . ' ' . ($bacenta->leader->last_name ?? '')}}</td>
+                    <td class="p-2 border border-gray-300"  data-label="Location">{{ $bacenta->location }}</td>
+                    <td class="p-2 border border-gray-300"  data-label="Status" class="progress-cell">
                         @php
                         if ($bacenta->is_active) {
                             $status = "Active";
@@ -94,10 +94,10 @@
                         @endphp
                         {{ $status }}
                     </td>
-                    <td data-label="Username">
+                    <td class="p-2 border border-gray-300" data-label="Username">
                         {{ $bacenta->username }}
                     </td>
-                    <td data-label="members" class="members">
+                    <td class="p-2 border border-gray-300" data-label="members" class="members">
                       <div class="buttons right nowrap">
                         <a
                           href="{{ route('bacenta.member', ['id' => $bacenta->id]) }}"
