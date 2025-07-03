@@ -21,6 +21,8 @@ class AttendanceController extends Controller
         // GET SUNDAY ATTENDANCE
         $sundayService = Service::where('sunday_service', 1)->where('is_special', 0)->first();
         $serviceDate = Carbon::now()->startOfWeek(Carbon::SUNDAY);
+        $ushersHeadcount = null;
+        $busingAttendace = null;
         if($sundayService){
             if($request->has('service_date')){
                 // Get Sunday Attendance Based On Date Filter
@@ -28,7 +30,7 @@ class AttendanceController extends Controller
                 $isSunday = Carbon::parse($request->service_date)->isSunday();
                 if($isSunday){
                     // Users Headcount Attendance
-                    $serviceDate = $request->service_date;
+                    $serviceDate =Carbon::parse($request->service_date);
                     $ushersHeadcount = UsherHeadcount::with('service')
                         ->where('service_id', $sundayService->id)
                         ->where('service_date', $request->service_date)
@@ -39,7 +41,9 @@ class AttendanceController extends Controller
                         ->where('service_id', $sundayService->id)
                         ->where('service_date', $request->service_date)
                         ->sum('bus_count');
+
                     // TODO:: Membership Attendance
+                    
                 } else {
                     $error = "Date Not A Sunday";
                     $ushersHeadcount = [];
@@ -61,9 +65,6 @@ class AttendanceController extends Controller
                 // TODO:: Membership Attendance
             }
         }
-
-        $ushersHeadcount = null;
-        $busingAttendace = null;
        
 
         $services = Service::get();

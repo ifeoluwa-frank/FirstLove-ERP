@@ -131,18 +131,11 @@
         </ul>
     </section>
 
-    <!-- Attendance Controls -->
-    <div class="control-grid">
-        <input type="date" name="date" id="date" class="date-picker" value="{{ date('Y-m-d') }}" required>
-
-        <select name="service" id="service" class="service-select" required>
-            <option value="">Select Service</option>
-            <option value="Sunday Service">Sunday Service</option>
-            <option value="Midweek Service">Midweek Service</option>
-            <option value="Prayer Meeting">Prayer Meeting</option>
-            <option value="Leaders' Meeting">Leaders' Meeting</option>
-        </select>
-    </div>
+    @if(session('notify'))
+        <div class="alert alert-{{ session('notify_type', 'info') }}">
+            {{ session('notify') }}
+        </div>
+    @endif
 
     <!-- Attendance Board -->
     <div class="attendance-board">
@@ -151,26 +144,63 @@
         <div class="absent">Absent: <span id="absentCount">0</span></div>
         <div class="percentage">Attendance: <span id="attendancePercentage">0%</span></div>
     </div>
+    {{-- @if ($errors->any())
+        <div class="alert alert-danger mb-4">
+            <ul class="list-disc list-inside text-sm text-red-600">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif --}}
+    @if ($errors->any())
+        <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-4 rounded-lg">
+            <ul class="list-disc list-inside">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
 
     <!-- Members Form -->
     <div class="container mx-auto mt-5">
-        <form action="#" method="POST" id="attendanceForm">
+        <form action="{{ route('membership.submit') }}" method="POST" id="attendanceForm">
             @csrf
+            <!-- Attendance Controls -->
+            <div class="control-grid">
+                <input type="date" name="service_date" id="date" class="date-picker" value="{{ date('Y-m-d') }}" required>
 
+                <select class="w-full px-3 py-2 border rounded controller" name="service_id">
+                    <option disabled value="">-- Select an Option --</option>
+                    @foreach($services as $service)
+                        <option value="{{ $service->id }}">{{ $service->name }}</option>
+                    @endforeach
+                </select>
+
+                <input type="hidden" name="member_count" id="count" />
+                <input type="hidden" name="bacenta_id" value="{{ $bacenta->id }}" />
+            </div>
             <!-- Member Cards Grid -->
             <div class="grid">
-                @for ($i = 1; $i <= 12; $i++)
-                <div class="member-card">
-                    <div class="member-card-content">
-                        <img src="https://via.placeholder.com/45" alt="Member {{ $i }}">
-                        <div>
-                            <div>Member {{ $i }}</div>
-                            <div class="text-sm text-gray-400">+255 71{{ rand(0,9) }} {{ rand(100,999) }} {{ rand(100,999) }}</div>
+                @forelse ($myMembers as $member)
+                    <div class="member-card">
+                        <div class="member-card-content">
+                            @if($member->profile_picture)
+                                <img src="{{ asset('storage/' . $member->profile_picture) }}" alt="Profile Picture" class="rounded-full" style="width: 50px; height: 50px">
+                            @else
+                                <img src="https://avatars.dicebear.com/v2/initials/john-doe.svg" alt="John Doe" class="rounded-full">
+                            @endif
+                            <div>
+                                <div>{{ $member->first_name . ' ' .  $member->last_name}}</div>
+                                <div class="text-sm text-gray-400">{{ $member->phone }}</div>
+                            </div>
                         </div>
+                        <input type="checkbox" name="user_ids[]" value="{{ $member->id }}" class="form-checkbox">
                     </div>
-                    <input type="checkbox" name="attendance[{{ $i }}]" value="1" class="form-checkbox">
-                </div>
-                @endfor
+                @empty
+                @endforelse
             </div>
 
             <!-- Submit Button -->
@@ -194,6 +224,7 @@
 
         document.getElementById('totalCount').innerText = total;
         document.getElementById('presentCount').innerText = present;
+        document.getElementById('count').value = present;
         document.getElementById('absentCount').innerText = absent;
         document.getElementById('attendancePercentage').innerText = percentage + '%';
     }

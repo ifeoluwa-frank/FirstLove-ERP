@@ -73,7 +73,12 @@ Route::prefix('bacenta')->group(function () {
         })->name('bacenta.dashboard');
 
         Route::get('member', [MembersController::class, 'index'])->name('members.index');
+        Route::get('member-create', [MembersController::class, 'create'])->name('members.create');
+        Route::post('member-store', [MembersController::class, 'store'])->name('members.store');
+        Route::get('member-detail/{id}', [MembersController::class, 'detail'])->name('members.detail');
+        Route::put('/member-update/{id}', [MembersController::class, 'update'])->name('members.update');
         Route::get('membership/attendance', [BacentaAttendanceController::class, 'index'])->name('membership.index');
+        Route::post('membership-submiit', [BacentaAttendanceController::class, 'membershipAttendance'])->name('membership.submit');
     });
 });
 

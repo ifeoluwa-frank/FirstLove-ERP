@@ -37,7 +37,7 @@
                         </div>
                     @endif
         
-                    <form action="{{ route('member.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('members.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="flex flex-col gap-4 sm:flex-row sm:gap-6">
                             <div class="field w-full">
@@ -99,7 +99,7 @@
                                     <input type="text" name="address" class="input w-full">
                                 </div>
                             </div>
-                            <div class="field w-full">
+                            {{-- <div class="field w-full">
                                 <label class="label">Bacenta</label>
                                 <select class="w-full px-3 py-2 border rounded controller" name="bacenta_id">
                                     <option disabled selected value="">-- Select an Option --</option>
@@ -107,7 +107,8 @@
                                         <option value="{{ $bacenta->id }}">{{ $bacenta->bacenta_name }}</option>
                                     @endforeach
                                 </select>
-                            </div>
+                            </div> --}}
+                            <input type="hidden" value="{{ $bacenta->id }}" name="bacenta_id" />
                             <div class="field w-full">
                                 <label class="label">When Did You Join the Church?</label>
                                 <div class="control">

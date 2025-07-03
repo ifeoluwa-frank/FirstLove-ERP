@@ -124,7 +124,7 @@
               </div>
     
               
-              <section class="section main-section">
+              {{-- <section class="section main-section">
                 <div class="card lg:col-span-1">
                     <header class="card-header">
                         <p class="card-header-title">
@@ -180,7 +180,7 @@
                         </form>
                       </div>
                   </div>
-              </section>
+              </section> --}}
           </section>   
     </div>
 
