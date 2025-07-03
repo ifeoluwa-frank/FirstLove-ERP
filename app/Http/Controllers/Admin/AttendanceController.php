@@ -21,44 +21,47 @@ class AttendanceController extends Controller
         // GET SUNDAY ATTENDANCE
         $sundayService = Service::where('sunday_service', 1)->where('is_special', 0)->first();
         $serviceDate = Carbon::now()->startOfWeek(Carbon::SUNDAY);
-        if($request->has('service_date')){
-            // Get Sunday Attendance Based On Date Filter
+        if($sundayService){
+            if($request->has('service_date')){
+                // Get Sunday Attendance Based On Date Filter
 
-            $isSunday = Carbon::parse($request->service_date)->isSunday();
-            if($isSunday){
+                $isSunday = Carbon::parse($request->service_date)->isSunday();
+                if($isSunday){
+                    // Users Headcount Attendance
+                    $serviceDate = $request->service_date;
+                    $ushersHeadcount = UsherHeadcount::with('service')
+                        ->where('service_id', $sundayService->id)
+                        ->where('service_date', $request->service_date)
+                        ->first();
+            
+                    // TODO:: Busing Attendance
+                    $busingAttendace = BusingAttendance::with('service')
+                        ->where('service_id', $sundayService->id)
+                        ->where('service_date', $request->service_date)
+                        ->sum('bus_count');
+                    // TODO:: Membership Attendance
+                } else {
+                    $error = "Date Not A Sunday";
+                    $ushersHeadcount = [];
+                    $busingAttendace = "";
+                    // TODO:: Assign empty array to other attendance types
+                }
+            } else {
+
                 // Users Headcount Attendance
-                $serviceDate = $request->service_date;
                 $ushersHeadcount = UsherHeadcount::with('service')
                     ->where('service_id', $sundayService->id)
-                    ->where('service_date', $request->service_date)
+                    ->where('service_date', $serviceDate)
                     ->first();
         
                 // TODO:: Busing Attendance
-                $busingAttendace = BusingAttendance::with('service')
-                    ->where('service_id', $sundayService->id)
-                    ->where('service_date', $request->service_date)
+                $busingAttendace = BusingAttendance::where('service_id', $sundayService->id)
+                    ->where('service_date', $serviceDate)
                     ->sum('bus_count');
                 // TODO:: Membership Attendance
-            } else {
-                $error = "Date Not A Sunday";
-                $ushersHeadcount = [];
-                $busingAttendace = "";
-                // TODO:: Assign empty array to other attendance types
             }
-        } else {
-
-            // Users Headcount Attendance
-            $ushersHeadcount = UsherHeadcount::with('service')
-                ->where('service_id', $sundayService->id)
-                ->where('service_date', $serviceDate)
-                ->first();
-    
-            // TODO:: Busing Attendance
-            $busingAttendace = BusingAttendance::where('service_id', $sundayService->id)
-                ->where('service_date', $serviceDate)
-                ->sum('bus_count');
-            // TODO:: Membership Attendance
         }
+       
 
         $services = Service::get();
         //GET MIDWEEK SERVICE ATTENDANCE
