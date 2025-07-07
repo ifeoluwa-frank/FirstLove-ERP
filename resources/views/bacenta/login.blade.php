@@ -45,7 +45,7 @@
           <div class="field spaced">
             <label class="label">Login</label>
             <div class="control icons-left">
-              <input class="input" type="text" name="username" placeholder="user@example.com" autocomplete="username">
+              <input class="input" type="text" name="username" placeholder="" autocomplete="username">
               <span class="icon is-small left"><i class="mdi mdi-account"></i></span>
             </div>
             <p class="help">
