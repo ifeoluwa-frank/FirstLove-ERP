@@ -23,6 +23,11 @@ class AttendanceController extends Controller
         $serviceDate = Carbon::now()->startOfWeek(Carbon::SUNDAY);
         $ushersHeadcount = null;
         $busingAttendace = null;
+
+        $bacentaService = Service::where('bacenta_level', 1)->where('sunday_service', 0)->first();
+        $startOfWeek = Carbon::now()->startOfWeek(); // Get Monday of the current week
+        $endOfWeek = Carbon::now()->endOfWeek();
+
         if($sundayService){
             if($request->has('service_date')){
                 // Get Sunday Attendance Based On Date Filter
@@ -72,25 +77,15 @@ class AttendanceController extends Controller
                 $membershipAttendance = MembershipAttendance::where('service_id', $sundayService->id)
                     ->where('service_date', $serviceDate)->sum('member_count');
             }
-        }
-       
-
-        $services = Service::get();
-        //GET MIDWEEK SERVICE ATTENDANCE
-        $bacentaService = Service::where('bacenta_level', 1)->where('sunday_service', 0)->first();
-
-        $startOfWeek = Carbon::now()->startOfWeek(); // Get Monday of the current week
-        $endOfWeek = Carbon::now()->endOfWeek(); // Get Sunday of the current week
-
-        // $membershipAttendance = null;
-        if($bacentaService){
+        }else if($bacentaService){
             $membershipAttendance = MembershipAttendance::with('bacenta')
             ->whereBetween('service_date', [$startOfWeek, $endOfWeek])
             ->where('service_id', $bacentaService->id)
-            ->get();
+            ->sum('member_count');
         }
-        
-    
+
+        $services = Service::get();
+
         return view('admin.attendance.index', compact('pageTitle', 'ushersHeadcount', 'services', 'sundayService', 'bacentaService', 'membershipAttendance', 'error', 'busingAttendace', 'serviceDate', 'membershipAttendance'));
     }
 
