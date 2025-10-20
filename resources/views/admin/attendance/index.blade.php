@@ -103,7 +103,7 @@
                     <div class="flex items-center justify-between">
                       <div class="widget-label">
                         <h3>Bacentas Attendance - {{ $membershipAttendance }}</h3>
-                        <h1>3</h1>
+                        <h1>{{ $totalBacenta }}</h1>
                       </div>
                       <span class="icon widget-icon text-blue-500"
                         ><i class="mdi mdi-church mdi-48px"></i
