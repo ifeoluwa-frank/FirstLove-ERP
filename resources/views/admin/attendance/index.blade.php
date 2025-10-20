@@ -108,6 +108,11 @@
                       <span class="icon widget-icon text-blue-500"
                         ><i class="mdi mdi-church mdi-48px"></i
                       ></span>
+                      @forelse ($allBacenta as $item)
+                          {{ $item->bacenta_name }}
+                      @empty
+                          <p>Empty Bacenta</p>
+                      @endforelse
                     </div>
                   @else
                     <div class="flex items-center justify-between">

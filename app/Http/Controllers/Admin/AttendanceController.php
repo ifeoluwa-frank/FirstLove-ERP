@@ -29,6 +29,7 @@ class AttendanceController extends Controller
         $endOfWeek = Carbon::now()->endOfWeek();
 
         $totalBacenta = Bacenta::where('is_active', 1)->count();
+        $allBacenta = Bacenta::where('is_active', 1)->get();
 
         if($sundayService){
             if($request->has('service_date')){
@@ -88,7 +89,7 @@ class AttendanceController extends Controller
 
         $services = Service::get();
 
-        return view('admin.attendance.index', compact('pageTitle', 'ushersHeadcount', 'services', 'sundayService', 'bacentaService', 'membershipAttendance', 'error', 'busingAttendace', 'serviceDate', 'membershipAttendance', 'totalBacenta'));
+        return view('admin.attendance.index', compact('pageTitle', 'ushersHeadcount', 'services', 'sundayService', 'bacentaService', 'membershipAttendance', 'error', 'busingAttendace', 'serviceDate', 'membershipAttendance', 'totalBacenta', 'allBacenta'));
     }
 
     public function record() {
