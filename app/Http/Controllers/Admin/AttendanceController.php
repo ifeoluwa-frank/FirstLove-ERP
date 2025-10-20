@@ -54,13 +54,18 @@ class AttendanceController extends Controller
                     $membershipAttendance = MembershipAttendance::where('service_id', $sundayService->id)
                         ->where('service_date', $request->service_date)->sum('member_count');
 
-                    dd($membershipAttendance);
+                    // dd($membershipAttendance);
+                    foreach($allBacenta as $each){
+                        $each['attendance'] = MembershipAttendance::where('service_id', $sundayService->id)
+                            ->where('service_date', $request->service_date)->sum('member_count');
+                    }
                     
                 } else {
                     $error = "Date Not A Sunday";
                     $ushersHeadcount = [];
                     $busingAttendace = "";
                     $membershipAttendance = 0;
+                    $allBacenta = [];
                     // TODO:: Assign empty array to other attendance types
                 }
             } else {
@@ -85,6 +90,11 @@ class AttendanceController extends Controller
             ->whereBetween('service_date', [$startOfWeek, $endOfWeek])
             ->where('service_id', $bacentaService->id)
             ->sum('member_count');
+
+            foreach($allBacenta as $each){
+                $each['attendance'] = MembershipAttendance::where('service_id', $sundayService->id)
+                    ->where('service_date', $request->service_date)->sum('member_count');
+            }
         }
 
         $services = Service::get();

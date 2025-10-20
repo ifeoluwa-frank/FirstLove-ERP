@@ -121,7 +121,10 @@
                     </div>
                   @endif
                   @forelse ($allBacenta as $item)
-                    <div>{{ $item->bacenta_name }}</div>
+                    @php
+                      
+                    @endphp
+                    <div>{{ $item->bacenta_name }} - </div>
                   @empty
                     <p>Empty Bacenta</p>
                   @endforelse
