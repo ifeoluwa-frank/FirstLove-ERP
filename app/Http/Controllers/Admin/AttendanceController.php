@@ -43,6 +43,13 @@ class AttendanceController extends Controller
                         ->sum('bus_count');
 
                     // TODO:: Membership Attendance
+                    $membershipAttendance = MembershipAttendance::where('service_id', $sundayService->id)
+                        ->where('service_date', $request->service_date)->get();
+
+                    $membershipValue = 0;
+                    foreach($membershipAttendance as $bacenta){
+                        $membershipValue += $bacenta->member_count;
+                    }
                     
                 } else {
                     $error = "Date Not A Sunday";
@@ -83,7 +90,7 @@ class AttendanceController extends Controller
         }
         
     
-        return view('admin.attendance.index', compact('pageTitle', 'ushersHeadcount', 'services', 'sundayService', 'bacentaService', 'membershipAttendance', 'error', 'busingAttendace', 'serviceDate'));
+        return view('admin.attendance.index', compact('pageTitle', 'ushersHeadcount', 'services', 'sundayService', 'bacentaService', 'membershipAttendance', 'error', 'busingAttendace', 'serviceDate', 'membershipValue'));
     }
 
     public function record() {
