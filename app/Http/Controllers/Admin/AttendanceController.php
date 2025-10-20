@@ -45,6 +45,8 @@ class AttendanceController extends Controller
                     // TODO:: Membership Attendance
                     $membershipAttendance = MembershipAttendance::where('service_id', $sundayService->id)
                         ->where('service_date', $request->service_date)->sum('member_count');
+
+                    dd($membershipAttendance);
                     
                 } else {
                     $error = "Date Not A Sunday";
