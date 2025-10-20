@@ -89,7 +89,7 @@ class AttendanceController extends Controller
         }
         
     
-        return view('admin.attendance.index', compact('pageTitle', 'ushersHeadcount', 'services', 'sundayService', 'bacentaService', 'membershipAttendance', 'error', 'busingAttendace', 'serviceDate', 'membershipValue'));
+        return view('admin.attendance.index', compact('pageTitle', 'ushersHeadcount', 'services', 'sundayService', 'bacentaService', 'membershipAttendance', 'error', 'busingAttendace', 'serviceDate', 'membershipAttendance'));
     }
 
     public function record() {

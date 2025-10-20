@@ -242,7 +242,7 @@
 
     var ctx = document.getElementById('attendanceChart').getContext('2d');
 
-    const attendanceData = [{{ $ushersHeadcount->headcount ?? 0 }}, {{ $busingAttendace ?? 0 }}, {{ $busingAttendace ?? 0 }}]; // Replace with dynamic data
+    const attendanceData = [{{ $ushersHeadcount->headcount ?? 0 }}, {{ $busingAttendace ?? 0 }}, {{ $membershipAttendance ?? 0 }}]; // Replace with dynamic data
     const average = (attendanceData.reduce((a, b) => a + b, 0) / attendanceData.length).toFixed(1); // ✅ Calculate average
 
     var attendanceChart = new Chart(ctx, {
