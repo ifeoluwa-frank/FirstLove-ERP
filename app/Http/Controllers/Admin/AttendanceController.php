@@ -44,17 +44,13 @@ class AttendanceController extends Controller
 
                     // TODO:: Membership Attendance
                     $membershipAttendance = MembershipAttendance::where('service_id', $sundayService->id)
-                        ->where('service_date', $request->service_date)->get();
-
-                    $membershipValue = 0;
-                    foreach($membershipAttendance as $bacenta){
-                        $membershipValue += $bacenta->member_count;
-                    }
+                        ->where('service_date', $request->service_date)->sum('bus_count');
                     
                 } else {
                     $error = "Date Not A Sunday";
                     $ushersHeadcount = [];
                     $busingAttendace = "";
+                    $membershipAttendance = 0;
                     // TODO:: Assign empty array to other attendance types
                 }
             } else {
@@ -69,7 +65,10 @@ class AttendanceController extends Controller
                 $busingAttendace = BusingAttendance::where('service_id', $sundayService->id)
                     ->where('service_date', $serviceDate)
                     ->sum('bus_count');
+
                 // TODO:: Membership Attendance
+                $membershipAttendance = MembershipAttendance::where('service_id', $sundayService->id)
+                    ->where('service_date', $serviceDate)->sum('member_count');
             }
         }
        
@@ -81,7 +80,7 @@ class AttendanceController extends Controller
         $startOfWeek = Carbon::now()->startOfWeek(); // Get Monday of the current week
         $endOfWeek = Carbon::now()->endOfWeek(); // Get Sunday of the current week
 
-        $membershipAttendance = null;
+        // $membershipAttendance = null;
         if($bacentaService){
             $membershipAttendance = MembershipAttendance::with('bacenta')
             ->whereBetween('service_date', [$startOfWeek, $endOfWeek])
