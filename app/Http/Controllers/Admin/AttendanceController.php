@@ -84,6 +84,15 @@ class AttendanceController extends Controller
                 // TODO:: Membership Attendance
                 $membershipAttendance = MembershipAttendance::where('service_id', $sundayService->id)
                     ->where('service_date', $serviceDate)->sum('member_count');
+
+                foreach($allBacenta as $each){
+                    $attendance = MembershipAttendance::where('bacenta_id', $each->id)
+                        ->where('service_id', $sundayService->id)
+                        ->where('service_date', $serviceDate)
+                        ->value('member_count'); // returns a single value
+
+                    $each['attendance'] = $attendance ?? 0; //
+                }
             }
         }else if($bacentaService){
             $membershipAttendance = MembershipAttendance::with('bacenta')
@@ -92,8 +101,8 @@ class AttendanceController extends Controller
             ->sum('member_count');
 
             foreach($allBacenta as $each){
-                $each['attendance'] = MembershipAttendance::where('service_id', $sundayService->id)
-                    ->where('service_date', $request->service_date)->sum('member_count');
+                $each['attendance'] = MembershipAttendance::whereBetween('service_date', [$startOfWeek, $endOfWeek])
+                    ->where('service_id', $bacentaService->id)->sum('member_count');
             }
         }
 
