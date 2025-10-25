@@ -26,7 +26,7 @@
             <!-- Logo and Title -->
             <div class="flex flex-col items-center mb-6 text-center">
                 <div class="bg-white/20 backdrop-blur-md p-2 rounded-full shadow-lg">
-                    <img src="{{ asset('build/assets/image/Logo1.png') }}" 
+                    <img src="{{ asset('build/assets/image/login_logo.png') }}" 
                          alt="First Love Arusha Logo" 
                          class="w-16 h-16 drop-shadow-md">
                 </div>
