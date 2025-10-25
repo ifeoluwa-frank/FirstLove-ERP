@@ -32,7 +32,7 @@
                          class="w-20 h-20 drop-shadow-md">
                 </div>
                 <h1 class="text-2xl font-semibold text-white mt-3">First Love Arusha</h1>
-                <p class="text-sm text-gray-300">Welcome back! Please log in to continue</p>
+                <p class="text-sm text-gray-300">Welcome back Admin! Please log in to continue</p>
             </div>
 
             <!-- Login Form -->
