@@ -146,7 +146,7 @@ gtag("config", "UA-130795909-1");
 
     <aside class="aside is-placed-left is-expanded">
       <div class="aside-tools">
-        <div>FirstLove  <b class="font-black">Church</b></div>
+        <div>FirstLove  <b class="font-black">Arusha</b></div>
       </div>
       {{-- MENU OPTIONS --}}
       <div class="menu is-menu-main">
