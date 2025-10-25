@@ -1,30 +1,30 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>First Love Arusha | Login</title>
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <!-- Tailwind + JS -->
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+<body class="font-[Poppins] text-white bg-gray-900 relative overflow-hidden min-h-screen">
 
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">
-            <div>
-                <a href="/">
-                    <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-                </a>
-            </div>
+    <!-- Artistic Background (same style as landing page) -->
+    <div class="absolute inset-0 opacity-25">
+        <img src="{{ asset('build/assets/image/church1.jpg') }}" class="absolute top-0 left-0 w-1/3 h-1/2 object-cover">
+        <img src="{{ asset('build/assets/image/church2.jpg') }}" class="absolute bottom-0 right-0 w-1/3 h-1/2 object-cover">
+        <img src="{{ asset('build/assets/image/church3.jpg') }}" class="absolute top-1/3 right-1/4 w-1/4 h-1/3 object-cover">
+    </div>
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white dark:bg-gray-800 shadow-md overflow-hidden sm:rounded-lg">
-                {{ $slot }}
-            </div>
-        </div>
-    </body>
+    <!-- Main Page Content -->
+    <div class="relative z-10 flex items-center justify-center min-h-screen px-4">
+        {{ $slot }}
+    </div>
+
+</body>
 </html>
