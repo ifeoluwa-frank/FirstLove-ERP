@@ -37,19 +37,19 @@
 
     <!-- Overlay Content -->
     <div class="absolute inset-0 flex flex-col items-center justify-center text-center z-10 px-4">
-        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div class="absolute inset-0 bg-black bg-opacity-70"></div>
         <div class="relative z-20 animate-fadeIn">
             <img src="{{ asset('build/assets/image/Logo1.png') }}" 
                 alt="Church Logo" class="w-56 h-56 mb-0 object-contain mx-auto animate-bounceIn">
             <h1 class="text-5xl font-bold text-white drop-shadow-lg mb-4 animate-fadeInUp">First Love Arusha</h1>
             <p class="text-xl text-white drop-shadow-lg mb-8 animate-fadeInUp delay-150">We believe in Jesus, soul winning and working for the Lord all day long.</p>
-            <div class="flex flex-wrap justify-center gap-4 animate-fadeInUp delay-300">
+            <div class="flex flex-col sm:flex-row justify-center gap-4 animate-fadeInUp delay-300">
                 <a href="{{ route('login') }}" 
-                   class="px-6 py-3 bg-blue-600 text-white rounded hover:bg-blue-700 hover:scale-105 transition transform duration-300 shadow-lg">
+                   class="px-6 py-3 bg-blue-600 bg-opacity-30 text-white rounded shadow-lg hover:bg-blue-700 hover:scale-105 transition transform duration-300">
                     Admin Login
                 </a>
                 <a href="{{ route('bacenta.login') }}" 
-                   class="px-6 py-3 bg-green-600 text-white rounded hover:bg-green-700 hover:scale-105 transition transform duration-300 shadow-lg">
+                   class="px-6 py-3 bg-green-600 bg-opacity-30 text-white rounded shadow-lg hover:bg-green-700 hover:scale-105 transition transform duration-300">
                     Bacenta Login
                 </a>
             </div>
@@ -91,5 +91,14 @@
 .delay-22000 { animation-delay: 22s; }
 .delay-24000 { animation-delay: 24s; }
 .delay-26000 { animation-delay: 26s; }
+
+/* Button hover glow */
+a:hover {
+    transform: scale(1.08);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+/* Heading text shadow */
+h1 { text-shadow: 0 2px 6px rgba(0,0,0,0.6); }
 </style>
 @endsection

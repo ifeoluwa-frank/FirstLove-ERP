@@ -3,7 +3,7 @@
 @section('content')
 <div class="relative w-full h-screen overflow-hidden bg-gray-900">
 
-    <!-- Animated Collage Background -->
+    <!-- Artistic Collage Background -->
     <div class="absolute inset-0">
         <img src="{{ asset('build/assets/image/church1.jpg') }}" 
              class="absolute top-0 left-0 w-1/3 h-1/2 object-cover transform animate-slowZoom opacity-70">
@@ -13,20 +13,26 @@
              class="absolute top-1/2 left-2/3 w-1/3 h-1/2 object-cover transform animate-slowZoom opacity-70 delay-4000">
         <img src="{{ asset('build/assets/image/church4.jpg') }}" 
              class="absolute top-1/4 left-1/3 w-1/3 h-2/3 object-cover transform animate-slowZoom opacity-70 delay-6000">
+        <img src="{{ asset('build/assets/image/church5.jpg') }}" 
+             class="absolute top-1/4 left-1/3 w-1/3 h-2/3 object-cover transform animate-slowZoom opacity-70 delay-2000">
+        <img src="{{ asset('build/assets/image/church6.jpg') }}" 
+             class="absolute top-1/2 left-2/3 w-1/3 h-1/2 object-cover transform animate-slowZoom opacity-70 delay-4000">
+        <img src="{{ asset('build/assets/image/church7.jpg') }}" 
+             class="absolute top-1/4 left-1/3 w-1/3 h-2/3 object-cover transform animate-slowZoom opacity-70 delay-6000">
     </div>
 
-    <!-- Frosted Glass Overlay -->
-    <div class="absolute inset-0 bg-black bg-opacity-50 backdrop-blur-sm"></div>
+    <!-- Black Frosted Glass Overlay -->
+    <div class="absolute inset-0 bg-black bg-opacity-70 backdrop-blur-sm"></div>
 
     <!-- Login Card -->
     <div class="relative z-10 flex items-center justify-center h-full px-4">
         <div class="bg-white/10 backdrop-blur-md rounded-2xl shadow-2xl p-10 w-full max-w-md border border-white/20 hover:scale-105 transition-transform duration-300">
-            
+
             <!-- Logo and Title -->
             <div class="flex flex-col items-center mb-6 text-center animate-fadeInUp">
                 <div class="bg-white/20 backdrop-blur-md p-3 rounded-full shadow-lg">
                     <img src="{{ asset('build/assets/image/login_logo.png') }}" 
-                         alt="First Love Arusha Logo" 
+                         alt="Bacenta Logo" 
                          class="w-20 h-20 drop-shadow-md">
                 </div>
                 <h1 class="text-2xl font-semibold text-white mt-3">Bacenta Login</h1>
@@ -79,27 +85,22 @@
                     </a>
                 </div>
             </form>
+
         </div>
     </div>
 </div>
 
+<!-- Animations & slow zoom -->
 <style>
 @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 .animate-fadeInUp { animation: fadeInUp 1s ease forwards; }
 
-@keyframes slowZoom {
-  0% { transform: scale(1) translate(0, 0); }
-  50% { transform: scale(1.05) translate(10px, 10px); }
-  100% { transform: scale(1) translate(0, 0); }
-}
-.animate-slowZoom {
-  animation: slowZoom 20s ease-in-out infinite alternate;
-}
+@keyframes slowZoom { 0% { transform: scale(1); } 50% { transform: scale(1.05); } 100% { transform: scale(1); } }
+.animate-slowZoom { animation: slowZoom 20s ease-in-out infinite alternate; }
 .delay-2000 { animation-delay: 2s; }
 .delay-4000 { animation-delay: 4s; }
 .delay-6000 { animation-delay: 6s; }
 </style>
 
-<!-- Material Design Icons -->
 <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css">
 @endsection
