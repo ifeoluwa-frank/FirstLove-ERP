@@ -104,6 +104,8 @@ class AttendanceController extends Controller
                 $each['attendance'] = MembershipAttendance::whereBetween('service_date', [$startOfWeek, $endOfWeek])
                     ->where('service_id', $bacentaService->id)->sum('member_count');
             }
+        }else{
+            $membershipAttendance = 0;
         }
 
         $services = Service::get();
