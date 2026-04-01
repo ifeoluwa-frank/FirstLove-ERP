@@ -156,7 +156,7 @@
                     <div class="field w-full">
                         <label class="label">Ministry</label>
                         <select class="w-full px-3 py-2 border rounded controller" name="ministry_id">
-                            <option disabled value="">-- Select an Option --</option>
+                            <option disabled selected value="">{{ $member->fellowship->name ?? "" }}</option>
                             @foreach($ministries as $ministry)
                                 <option value="{{ $ministry->id }}">{{ $ministry->name }}</option>
                             @endforeach
@@ -187,7 +187,7 @@
                     <div class="field w-full">
                         <label class="label">Bacenta</label>
                         <select class="w-full px-3 py-2 border rounded controller" name="bacenta_id">
-                            <option disabled value="">-- Select an Option --</option>
+                            <option disabled selected value="">{{ $member->bacenta->bacenta_name ?? "" }}</option>
                             @foreach($bacentas as $bacenta)
                                 <option value="{{ $bacenta->id }}">{{ $bacenta->bacenta_name }}</option>
                             @endforeach
