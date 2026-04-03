@@ -16,9 +16,9 @@
 
     <!-- Artistic Background (same style as landing page) -->
     <div class="absolute inset-0 opacity-25">
-        <img src="{{ asset('build/assets/image/church1.jpg') }}" class="absolute top-0 left-0 w-1/3 h-1/2 object-cover">
-        <img src="{{ asset('build/assets/image/church2.jpg') }}" class="absolute bottom-0 right-0 w-1/3 h-1/2 object-cover">
-        <img src="{{ asset('build/assets/image/church3.jpg') }}" class="absolute top-1/3 right-1/4 w-1/4 h-1/3 object-cover">
+        <img src="{{ asset('images/church1.jpg') }}" class="absolute top-0 left-0 w-1/3 h-1/2 object-cover">
+        <img src="{{ asset('images/church2.jpg') }}" class="absolute bottom-0 right-0 w-1/3 h-1/2 object-cover">
+        <img src="{{ asset('images/church3.jpg') }}" class="absolute top-1/3 right-1/4 w-1/4 h-1/3 object-cover">
     </div>
 
     <!-- Main Page Content -->

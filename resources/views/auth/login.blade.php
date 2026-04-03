@@ -5,15 +5,15 @@
 
     <!-- Artistic Collage Background -->
     <div class="absolute inset-0">
-        <img src="{{ asset('build/assets/image/church1.jpg') }}" 
+        <img src="{{ asset('images/church1.jpg') }}" 
              class="absolute top-0 left-0 w-1/3 h-1/2 object-cover transform animate-slowZoom opacity-70">
-        <img src="{{ asset('build/assets/image/church2.jpg') }}" 
+        <img src="{{ asset('images/church2.jpg') }}" 
              class="absolute top-1/4 left-1/3 w-1/3 h-2/3 object-cover transform animate-slowZoom opacity-70 delay-2000">
-        <img src="{{ asset('build/assets/image/church3.jpg') }}" 
+        <img src="{{ asset('images/church3.jpg') }}" 
              class="absolute top-1/2 left-2/3 w-1/3 h-1/2 object-cover transform animate-slowZoom opacity-70 delay-4000">
-        <img src="{{ asset('build/assets/image/church4.jpg') }}" 
+        <img src="{{ asset('images/church4.jpg') }}" 
              class="absolute top-1/4 left-1/3 w-1/3 h-2/3 object-cover transform animate-slowZoom opacity-70 delay-6000">
-        <img src="{{ asset('build/assets/image/church5.jpg') }}" 
+        <img src="{{ asset('images/church5.jpg') }}" 
              class="absolute top-1/2 left-2/3 w-1/3 h-1/2 object-cover transform animate-slowZoom opacity-70 delay-8000">
     </div>
 
@@ -27,7 +27,7 @@
             <!-- Logo and Title -->
             <div class="flex flex-col items-center mb-6 text-center animate-fadeInUp">
                 <div class="bg-white/20 backdrop-blur-md p-3 rounded-full shadow-lg">
-                    <img src="{{ asset('build/assets/image/login_logo.png') }}" 
+                    <img src="{{ asset('images/login_logo.png') }}" 
                          alt="First Love Arusha Logo" 
                          class="w-20 h-20 drop-shadow-md">
                 </div>

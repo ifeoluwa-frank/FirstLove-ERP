@@ -8,20 +8,20 @@
 
     <!-- Artistic Collage with 14 images -->
     <div class="absolute inset-0">
-        <img src="{{ asset('build/assets/image/church1.jpg') }}" class="absolute top-0 left-0 w-1/3 h-1/2 object-cover transform animate-slowZoom" alt="Church 1">
-        <img src="{{ asset('build/assets/image/church2.jpg') }}" class="absolute top-1/4 left-1/3 w-1/4 h-1/3 object-cover transform animate-slowZoom delay-2000" alt="Church 2">
-        <img src="{{ asset('build/assets/image/church3.jpg') }}" class="absolute bottom-0 right-0 w-1/3 h-1/2 object-cover transform animate-slowZoom delay-4000" alt="Church 3">
-        <img src="{{ asset('build/assets/image/church4.jpg') }}" class="absolute top-1/2 left-1/2 w-1/4 h-1/4 object-cover transform animate-slowZoom delay-6000" alt="Church 4">
-        <img src="{{ asset('build/assets/image/church5.jpg') }}" class="absolute top-0 right-1/4 w-1/5 h-1/3 object-cover transform animate-slowZoom delay-8000" alt="Church 5">
-        <img src="{{ asset('build/assets/image/church6.jpg') }}" class="absolute bottom-10 left-10 w-1/4 h-1/3 object-cover transform animate-slowZoom delay-10000" alt="Church 6">
-        <img src="{{ asset('build/assets/image/church7.jpg') }}" class="absolute top-10 right-10 w-1/4 h-1/3 object-cover transform animate-slowZoom delay-12000" alt="Church 7">
-        <img src="{{ asset('build/assets/image/church8.jpg') }}" class="absolute top-1/3 left-0 w-1/5 h-1/3 object-cover transform animate-slowZoom delay-14000" alt="Church 8">
-        <img src="{{ asset('build/assets/image/church9.jpg') }}" class="absolute bottom-1/4 right-1/3 w-1/4 h-1/3 object-cover transform animate-slowZoom delay-16000" alt="Church 9">
-        <img src="{{ asset('build/assets/image/church10.jpg') }}" class="absolute top-1/3 right-1/2 w-1/5 h-1/3 object-cover transform animate-slowZoom delay-18000" alt="Church 10">
-        <img src="{{ asset('build/assets/image/church11.jpg') }}" class="absolute bottom-0 left-1/2 w-1/3 h-1/3 object-cover transform animate-slowZoom delay-20000" alt="Church 11">
-        <img src="{{ asset('build/assets/image/church12.jpg') }}" class="absolute top-1/4 right-0 w-1/4 h-1/3 object-cover transform animate-slowZoom delay-22000" alt="Church 12">
-        <img src="{{ asset('build/assets/image/church13.jpg') }}" class="absolute bottom-1/3 left-1/3 w-1/5 h-1/4 object-cover transform animate-slowZoom delay-24000" alt="Church 13">
-        <img src="{{ asset('build/assets/image/church14.jpg') }}" class="absolute top-0 right-0 w-1/4 h-1/3 object-cover transform animate-slowZoom delay-26000" alt="Church 14">
+        <img src="{{ asset('images/church1.jpg') }}" class="absolute top-0 left-0 w-1/3 h-1/2 object-cover transform animate-slowZoom" alt="Church 1">
+        <img src="{{ asset('images/church2.jpg') }}" class="absolute top-1/4 left-1/3 w-1/4 h-1/3 object-cover transform animate-slowZoom delay-2000" alt="Church 2">
+        <img src="{{ asset('images/church3.jpg') }}" class="absolute bottom-0 right-0 w-1/3 h-1/2 object-cover transform animate-slowZoom delay-4000" alt="Church 3">
+        <img src="{{ asset('images/church4.jpg') }}" class="absolute top-1/2 left-1/2 w-1/4 h-1/4 object-cover transform animate-slowZoom delay-6000" alt="Church 4">
+        <img src="{{ asset('images/church5.jpg') }}" class="absolute top-0 right-1/4 w-1/5 h-1/3 object-cover transform animate-slowZoom delay-8000" alt="Church 5">
+        <img src="{{ asset('images/church6.jpg') }}" class="absolute bottom-10 left-10 w-1/4 h-1/3 object-cover transform animate-slowZoom delay-10000" alt="Church 6">
+        <img src="{{ asset('images/church7.jpg') }}" class="absolute top-10 right-10 w-1/4 h-1/3 object-cover transform animate-slowZoom delay-12000" alt="Church 7">
+        <img src="{{ asset('images/church8.jpg') }}" class="absolute top-1/3 left-0 w-1/5 h-1/3 object-cover transform animate-slowZoom delay-14000" alt="Church 8">
+        <img src="{{ asset('images/church9.jpg') }}" class="absolute bottom-1/4 right-1/3 w-1/4 h-1/3 object-cover transform animate-slowZoom delay-16000" alt="Church 9">
+        <img src="{{ asset('images/church10.jpg') }}" class="absolute top-1/3 right-1/2 w-1/5 h-1/3 object-cover transform animate-slowZoom delay-18000" alt="Church 10">
+        <img src="{{ asset('images/church11.jpg') }}" class="absolute bottom-0 left-1/2 w-1/3 h-1/3 object-cover transform animate-slowZoom delay-20000" alt="Church 11">
+        <img src="{{ asset('images/church12.jpg') }}" class="absolute top-1/4 right-0 w-1/4 h-1/3 object-cover transform animate-slowZoom delay-22000" alt="Church 12">
+        <img src="{{ asset('images/church13.jpg') }}" class="absolute bottom-1/3 left-1/3 w-1/5 h-1/4 object-cover transform animate-slowZoom delay-24000" alt="Church 13">
+        <img src="{{ asset('images/church14.jpg') }}" class="absolute top-0 right-0 w-1/4 h-1/3 object-cover transform animate-slowZoom delay-26000" alt="Church 14">
     </div>
 
     <!-- Overlay Content -->
@@ -31,7 +31,7 @@
 
     <div class="relative z-20 animate-fadeIn space-y-6 max-w-5xl mx-auto">
         <!-- Logo -->
-        <img src="{{ asset('build/assets/image/Logo1.png') }}" 
+        <img src="{{ asset('images/Logo1.png') }}" 
              alt="Church Logo" 
              class="w-40 sm:w-48 md:w-56 h-40 sm:h-48 md:h-56 mb-4 object-contain mx-auto animate-bounceIn drop-shadow-2xl">
 
